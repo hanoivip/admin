@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('web')->namespace('Hanoivip\Admin\Controllers')->prefix('admin')->group(function () {
+Route::middleware('web')->namespace('Hanoivip\Admin\Controllers')->prefix('ecmin')->group(function () {
+    
+    Route::get('/', function () {
+        return redirect()->route('user-find');
+    });
     
     Route::get('/user/find', 'AdminController@findUser')->name('user-find');
     Route::any('/user/detail', 'AdminController@detailUser')->name('user-detail');

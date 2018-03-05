@@ -2,7 +2,7 @@
 
 namespace Hanoivip\Admin\Controllers;
 
-class AdminController extends Controller
+class SiteController extends Controller
 {
     
 }

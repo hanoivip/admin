@@ -19,7 +19,7 @@ class AdminController extends Controller
     
     public function findUser()
     {
-        return view('hanoivip::user-find');
+        return view('hanoivip::admin.user-find');
     }
     
     public function detailUser(AdminRequest $request)
@@ -29,15 +29,15 @@ class AdminController extends Controller
         {
             $info = $this->passport->fetchAllInfo($tid);
             if (empty($info))
-                return view('hanoivip::user-find', ['error_message' => __('admin.user.not-found')]);
+                return view('hanoivip::admin.user-find', ['error_message' => __('admin.user.not-found')]);
             else
-                return view('hanoivip::user-detail',
+                return view('hanoivip::admin.user-detail',
                     ['tid' => $tid, 'personal' => $info['personal'], 'secure' => $info['secure']]);
         }
         catch (Exception $ex)
         {
             Log::error('Admin find user exception: ' . $ex->getMessage());
-            return view('hanoivip::user-find', ['error_message' => __('admin.user.find-exception')]);
+            return view('hanoivip::admin.user-find', ['error_message' => __('admin.user.find-exception')]);
         }
     }
     
@@ -58,7 +58,7 @@ class AdminController extends Controller
             Log::error('Admin reset user password exception: ' . $ex->getMessage());
             $error_message = __('admin.user.reset-pass.exception');
         }
-        return view('hanoivip::process-result', 
+        return view('hanoivip::admin.process-result', 
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
     }
     
@@ -84,7 +84,7 @@ class AdminController extends Controller
             Log::error('Admin logas user exception: ' . $ex->getMessage());
             $error_message = __('admin.user.logas.exception');
         }
-        return view('hanoivip::process-result',
+        return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
     }
 }

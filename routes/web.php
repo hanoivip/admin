@@ -16,7 +16,7 @@ Route::middleware('web')->namespace('Hanoivip\Admin\Controllers')->prefix('admin
     
     //Route::get('/gift');
     
-    Route::get('/site', 'SiteController@status');
-    Route::get('/site/down', 'SiteController@down');
-    Route::get('/site/up', 'SiteController@up');
+    Route::get('/site', 'SiteController@status')->name('site-status');
+    Route::get('/site/down', 'SiteController@down')->name('site-down');
+    Route::get('/site/up', 'SiteController@up')->name('site-up');
 });

@@ -1,3 +1,9 @@
+@extends('hanoivip::admin.layouts.admin')
+
+@section('title', 'Quan ly')
+
+@section('content')
+
 <div>
 	<h2 class="content_title">
 		<span class="titlebullet zidsprt"></span>Thông tin chung
@@ -44,18 +50,30 @@
 		</div>
 		<div class="inforow">
 			<label> Tỉnh/Thành phố:</label>
-			<div class="infotext">@if (!empty($personal->address)) {{
-				$personal->address }} @else (Chưa thiết lập) @endif</div>
+			<div class="infotext">
+			@if (!empty($personal->address)) 
+			{{ $personal->address }} 
+			@else 
+			(Chưa thiết lập) 
+			@endif</div>
 		</div>
 		<div class="inforow">
 			<label>Nghề nghiệp:</label>
-			<div class="infotext">@if (!empty($personal->career)) {{
-				$personal->career }} @else (Chưa thiết lập) @endif</div>
+			<div class="infotext">
+			@if (!empty($personal->career)) 
+			{{ $personal->career }} 
+			@else 
+			(Chưa thiết lập) 
+			@endif</div>
 		</div>
 		<div class="inforow">
 			<label>Tình trạng hôn nhân:</label>
-			<div class="infotext">@if (!empty($personal->mariage)) {{
-				$personal->mariage }} @else (Chưa thiết lập) @endif</div>
+			<div class="infotext">
+			@if (!empty($personal->mariage)) 
+			{{ $personal->mariage }} 
+			@else 
+			(Chưa thiết lập) 
+			@endif</div>
 		</div>
 	</div>
 </div>
@@ -119,3 +137,5 @@
 		<button type="submit">Send Message</button>
 	</form>
 </div>
+
+@endsection

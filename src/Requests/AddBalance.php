@@ -5,8 +5,9 @@ namespace Hanoivip\Admin\Requests;
 use Hanoivip\Admin\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
-class AdminRequest extends FormRequest
+class AddBalance extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -36,6 +37,8 @@ class AdminRequest extends FormRequest
     {
         return [
             'tid' => 'required|string',//target id
+            'balance' => 'required|integer',
+            'reason' => 'required|string'
         ];
     }
 }

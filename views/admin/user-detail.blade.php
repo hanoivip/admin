@@ -113,6 +113,13 @@
 		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
 		<button type="submit">Reset Pass</button>
 	</form>
+	<form method="POST" action="{{ route('balance-add') }}">
+	{{ csrf_field() }}
+		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+		So tien: <input id="balance" name="balance" type="text">
+		Ly do: <input id="reason" name="reason" type="text">
+		<button type="submit">Add Balance</button>
+	</form>
 	<form method="GET" action="{{ route('user-logas') }}">
 	{{ csrf_field() }}
 		<input id="tid" name="tid" type="hidden" value="{{$tid}}">

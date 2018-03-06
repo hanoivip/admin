@@ -19,8 +19,12 @@ class PassportClient
         $url = config('passport.uri') . '/api/admin/user?uid=' . $uid;
         Log::debug('Passport fetch user info:' . $url);
         $response = CurlHelper::factory($url)->exec();
+        if ($response['status'] == 404)
+            return null;
+        if ($response['status'] != 200)
+            throw new Exception('Passport user info error');
         if ($response['data'] === false)
-            throw new Exception('Passport response is invalid (not json).');
+            throw new Exception('Passport info response is invalid (not json).');
         return $response['data'];
     }
     

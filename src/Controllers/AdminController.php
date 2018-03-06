@@ -4,8 +4,8 @@ namespace Hanoivip\Admin\Controllers;
 
 use Hanoivip\Admin\Services\PassportClient;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
 use Exception;
+use Hanoivip\Admin\Requests\AddBalance;
 use Hanoivip\Admin\Requests\AdminRequest;
 
 class AdminController extends Controller
@@ -86,5 +86,10 @@ class AdminController extends Controller
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
+    }
+    
+    public function addBalance(AddBalance $request)
+    {
+        
     }
 }

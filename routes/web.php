@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('web')->namespace('Hanoivip\Admin\Controllers')->prefix('ecmin')->group(function () {
+Route::middleware(['web', 'admin'])->namespace('Hanoivip\Admin\Controllers')->prefix('ecmin')->group(function () {
     
     Route::get('/', function () {
         return redirect()->route('user-find');
@@ -16,7 +16,7 @@ Route::middleware('web')->namespace('Hanoivip\Admin\Controllers')->prefix('ecmin
     Route::post('/user/unband', 'AdminController@unbandUser')->name('user-unband');
     Route::post('/user/message', 'AdminController@messageUser')->name('user-message');
     
-    Route::any('/all/message', 'AdminController@messageAll')->name('spam');
+    Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
     
     //Route::get('/gift');
     

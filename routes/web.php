@@ -16,7 +16,9 @@ Route::middleware(['web', 'admin'])->namespace('Hanoivip\Admin\Controllers')->pr
     Route::post('/user/unband', 'AdminController@unbandUser')->name('user-unband');
     Route::post('/user/message', 'AdminController@messageUser')->name('user-message');
     
+    Route::get('/balance', 'AdminController@balanceInfo')->name('balance-info');
     Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
+    Route::get('/balance/history', 'AdminController@balanceHistory')->name('balance-history');
     
     //Route::get('/gift');
     

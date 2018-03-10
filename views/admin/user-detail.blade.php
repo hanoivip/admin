@@ -12,13 +12,14 @@
 		<div class="inforow">
 			<label>Họ tên</label>
 
-			<div class="infotext"
-				style="overflow: hidden; word-wrap: break-word;">
-				@if (!empty($personal->hoten)) 
-				{{ $personal->hoten }} 
-				@else 
-				(Chưa thiết lập) 
-				@endif</div>
+		<div class="infotext"
+			style="overflow: hidden; word-wrap: break-word;">
+			@if (!empty($personal['hoten'])) 
+			{{ $personal['hoten'] }} 
+			@else 
+			(Chưa thiết lập) 
+			@endif
+		</div>
 		</div>
 		<div class="inforow" id="gender">
 			<label>Giới tính:</label>
@@ -113,12 +114,10 @@
 		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
 		<button type="submit">Reset Pass</button>
 	</form>
-	<form method="POST" action="{{ route('balance-add') }}">
+	<form method="GET" action="{{ route('balance-info') }}">
 	{{ csrf_field() }}
 		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-		So tien: <input id="balance" name="balance" type="text">
-		Ly do: <input id="reason" name="reason" type="text">
-		<button type="submit">Add Balance</button>
+		<button type="submit">View Balance</button>
 	</form>
 	<form method="GET" action="{{ route('user-logas') }}">
 	{{ csrf_field() }}

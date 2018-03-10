@@ -17,7 +17,7 @@ class PassportClient
     public function fetchAllInfo($uid)
     {
         $url = config('passport.uri') . '/api/admin/user?uid=' . $uid;
-        Log::debug('Passport fetch user info:' . $url);
+        Log::debug('Passport fetch user info uri:' . $url);
         $response = CurlHelper::factory($url)->exec();
         if ($response['status'] == 404)
             return null;

@@ -7,14 +7,18 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use Hanoivip\Admin\Requests\AddBalance;
 use Hanoivip\Admin\Requests\AdminRequest;
+use Hanoivip\PaymentClient\BalanceUtil;
 
 class AdminController extends Controller
 {
     protected $passport;
     
-    public function __construct(PassportClient $passport)
+    protected $balances;
+    
+    public function __construct(PassportClient $passport, BalanceUtil $balances)
     {
         $this->passport = $passport;
+        $this->balances = $balances;
     }
     
     public function findUser()
@@ -28,6 +32,7 @@ class AdminController extends Controller
         try
         {
             $info = $this->passport->fetchAllInfo($tid);
+            //Log::debug('Passport fetch user info:' . print_r($info, true));
             if (empty($info))
                 return view('hanoivip::admin.user-find', ['error_message' => __('admin.user.not-found')]);
             else
@@ -88,7 +93,50 @@ class AdminController extends Controller
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
     }
     
+    public function balanceInfo(AdminRequest $request)
+    {
+        $tid = $request->input('tid');
+        $message = '';
+        $error_message = '';
+        try 
+        {
+            $info = $this->balances->getInfo($tid);
+            return view('hanoivip::admin.balance-info', 
+                ['tid' => $tid, 'balances' => $info]);
+        }
+        catch (Exception $ex)
+        {
+            Log::error('Admin get user balance info exception: ' . $ex->getMessage());
+            $error_message = __('admin.user.balance-info.exception');
+        }
+        return view('hanoivip::admin.process-result',
+            ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
+    }
+    
     public function addBalance(AddBalance $request)
+    {
+        $tid = $request->input('tid');
+        $balance = $request->input('balance');
+        $reason = $request->input('reason');
+        $message = '';
+        $error_message = '';
+        try 
+        {
+            if ($this->balances->add($tid, $balance, $reason))
+                $message = __('admin.user.add-balance.sucess');
+            else
+                $error_message = __('admin.user.add-balance.fail');
+        }
+        catch (Exception $ex)
+        {
+            Log::error('Admin add balance exception: ' . $ex->getMessage());
+            $error_message = __('admin.user.add-balance.exception');
+        }
+        return view('hanoivip::admin.process-result',
+            ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
+    }
+    
+    public function balanceHistory(AdminRequest $request)
     {
         
     }

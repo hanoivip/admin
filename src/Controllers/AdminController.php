@@ -6,8 +6,11 @@ use Hanoivip\Admin\Services\PassportClient;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use Hanoivip\Admin\Requests\AddBalance;
+use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
+use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\PaymentClient\BalanceUtil;
+use Hanoivip\Game\Services\ServerService;
 
 class AdminController extends Controller
 {
@@ -15,10 +18,16 @@ class AdminController extends Controller
     
     protected $balances;
     
-    public function __construct(PassportClient $passport, BalanceUtil $balances)
+    protected $servers;
+    
+    public function __construct(
+        PassportClient $passport, 
+        BalanceUtil $balances,
+        ServerService $servers)
     {
         $this->passport = $passport;
         $this->balances = $balances;
+        $this->servers = $servers;
     }
     
     public function findUser()
@@ -137,6 +146,22 @@ class AdminController extends Controller
     }
     
     public function balanceHistory(AdminRequest $request)
+    {
+        $tid = $request->input('tid');
+    }
+    
+    public function serverInfo()
+    {
+        $all = $this->servers->getAll();
+        return view('hanoivip::admin.server-info', ['servers' => $all]);
+    }
+    
+    public function addServer(AddServer $request)
+    {
+        
+    }
+    
+    public function removeServer(RemoveServer $request)
     {
         
     }

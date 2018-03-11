@@ -20,6 +20,10 @@ Route::middleware(['web', 'admin'])->namespace('Hanoivip\Admin\Controllers')->pr
     Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
     Route::get('/balance/history', 'AdminController@balanceHistory')->name('balance-history');
     
+    Route::get('/server', 'AdminController@serverInfo')->name('server-info');
+    Route::post('/server/remove', 'AdminController@removeServer')->name('server-remove');
+    Route::post('/server/add', 'AdminController@addServer')->name('server-add');
+    
     //Route::get('/gift');
     
     Route::get('/site', 'SiteController@status')->name('site-status');

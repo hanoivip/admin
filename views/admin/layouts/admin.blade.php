@@ -10,6 +10,9 @@
 Quan ly nguoi dung
 <a href="{{ route('user-find') }}">Tim kiem</a>
 
+Quan ly may chu
+<a href="{{ route('server-info') }}">Danh sach</a>
+
 Quan ly web
 <a href="{{ route('site-status') }}">Trang thai</a>
 <a href="{{ route('site-down') }}">Dong web</a>

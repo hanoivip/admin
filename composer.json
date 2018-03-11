@@ -9,7 +9,13 @@
 			"options" : {
 				"symlink" : true
 			}
-		}
+		}, {
+                        "type" : "path",
+                        "url" : "../game2",
+                        "options" : {
+                                "symlink" : true
+                        }
+                },
 	],
 	"require" : {
 		"php" : ">=7.0.0",
@@ -18,7 +24,8 @@
 		"laravel/framework" : "5.5.*",
 		"laravel/tinker" : "~1.0",
 		"mervick/curl-helper" : "^1.1",
-		"hanoivip/payment-client" : "dev-master"
+		"hanoivip/payment-client" : "dev-master",
+		"hanoivip/game" : "dev-master"
 	},
 	"autoload" : {
 		"psr-4" : {

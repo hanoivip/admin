@@ -16,7 +16,13 @@ class AddServer extends FormRequest
     public function rules()
     {
         return [
-            
+            'name' => 'required|string',
+            'ident' => 'required|string',
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'login_uri' => 'required|string',
+            'recharge_uri' => 'required|string',
+            'operate_uri' => 'required|string'
         ];
     }
 }

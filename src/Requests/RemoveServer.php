@@ -16,7 +16,7 @@ class RemoveServer extends FormRequest
     public function rules()
     {
         return [
-            
+            'ident' => 'required|string'
         ];
     }
 }

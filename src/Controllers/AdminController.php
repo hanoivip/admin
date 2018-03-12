@@ -10,6 +10,7 @@ use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\PaymentClient\BalanceUtil;
+use Hanoivip\Game\Server;
 use Hanoivip\Game\Services\ServerService;
 
 class AdminController extends Controller
@@ -158,11 +159,39 @@ class AdminController extends Controller
     
     public function addServer(AddServer $request)
     {
-        
+        $message = '';
+        $error_message = '';
+        try 
+        {
+            $params = $request->all();
+            //unset($params['_token']);
+            $this->servers->addNew($params);
+        }
+        catch (Exception $ex)
+        {
+            Log::error('Admin add server exception: ' . $ex->getMessage());
+            $error_message = __('admin.user.add-server.exception');
+        }
+        return view('hanoivip::admin.process-result',
+            ['message' => $message, 'error_message' => $error_message]);
     }
     
     public function removeServer(RemoveServer $request)
     {
-        
+        $ident = $request->input('ident');
+        $message = '';
+        $error_message = '';
+        try
+        {
+            $this->servers->removeByIdent($ident);
+            $message = __('admin.user.remove-server.success');
+        }
+        catch (Exception $ex)
+        {
+            Log::error('Admin remove server exception: ' . $ex->getMessage());
+            $error_message = __('admin.user.remove-server.exception');
+        }
+        return view('hanoivip::admin.process-result',
+            ['message' => $message, 'error_message' => $error_message]);
     }
 }

@@ -13,7 +13,7 @@ Longheo: TODO: hien thi danh sach may chu
 
 {{ print_r($servers[$j]) }}
 
-<form method="GET" action="{{ route('server-remove') }}">
+<form method="POST" action="{{ route('server-remove') }}">
 {{ csrf_field() }}
 	<input id="ident" name="ident" type="hidden" value="{{$servers[$j]->ident}}">
 	<button type="submit">Xoa</button>
@@ -29,16 +29,16 @@ Longheo: TODO: hien thi danh sach may chu
 	<input id="name" name="name" type="text">
 	Server ident (1, 2, 3..) (khong trung lap)
 	<input id="ident" name="ident" type="text">
-	Tieu de
+	Ten hien thi
 	<input id="title" name="title" type="text">
 	Mieu ta
-	<input id="desc" name="desc" type="text">
-	Login Uri (mobile co the de trong)
-	<input id="loginuri" name="loginuri" type="text">
+	<input id="description" name="description" type="text">
+	Login Uri
+	<input id="login_uri" name="login_uri" type="text">
 	Recharge Uri
-	<input id="payuri" name="payuri" type="text">
+	<input id="recharge_uri" name="recharge_uri" type="text">
 	Operate Uri
-	<input id="opsuri" name="opsuri" type="text">
+	<input id="operate_uri" name="operate_uri" type="text">
 	
 	<button type="submit">Them</button>
 </form>

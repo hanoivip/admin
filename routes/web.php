@@ -6,7 +6,7 @@ Route::middleware(['web', 'admin'])->namespace('Hanoivip\Admin\Controllers')->pr
     
     Route::get('/', function () {
         return redirect()->route('user-find');
-    });
+    })->name('admin-home');
     
     Route::get('/user/find', 'AdminController@findUser')->name('user-find');
     Route::any('/user/detail', 'AdminController@detailUser')->name('user-detail');

@@ -15,7 +15,7 @@
                         "options" : {
                                 "symlink" : true
                         }
-                },
+                }
 	],
 	"require" : {
 		"php" : ">=7.0.0",

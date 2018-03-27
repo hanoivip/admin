@@ -12,6 +12,7 @@ use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\PaymentClient\BalanceUtil;
 use Hanoivip\Game\Server;
 use Hanoivip\Game\Services\ServerService;
+use Hanoivip\GateClient\Services\TopupService;
 
 class AdminController extends Controller
 {
@@ -21,14 +22,18 @@ class AdminController extends Controller
     
     protected $servers;
     
+    protected $topup;
+    
     public function __construct(
         PassportClient $passport, 
         BalanceUtil $balances,
-        ServerService $servers)
+        ServerService $servers,
+        TopupService $topup)
     {
         $this->passport = $passport;
         $this->balances = $balances;
         $this->servers = $servers;
+        $this->topup = $topup;
     }
     
     public function findUser()
@@ -149,6 +154,10 @@ class AdminController extends Controller
     public function balanceHistory(AdminRequest $request)
     {
         $tid = $request->input('tid');
+        $submits = $this->topup->getHistory($tid);
+        $mods = $this->balances->getHistory($tid);
+        return view('hanoivip::admin.balance-history', 
+            ['tid' => $tid,'submits' => $submits, 'mods' => $mods]);
     }
     
     public function serverInfo()
@@ -166,6 +175,7 @@ class AdminController extends Controller
             $params = $request->all();
             //unset($params['_token']);
             $this->servers->addNew($params);
+            $message = __('admin.user.add-server.success');
         }
         catch (Exception $ex)
         {

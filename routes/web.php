@@ -18,7 +18,7 @@ Route::middleware(['web', 'admin'])->namespace('Hanoivip\Admin\Controllers')->pr
     
     Route::get('/balance', 'AdminController@balanceInfo')->name('balance-info');
     Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
-    Route::get('/balance/history', 'AdminController@balanceHistory')->name('balance-history');
+    Route::post('/balance/history', 'AdminController@balanceHistory')->name('balance-history');
     
     Route::get('/server', 'AdminController@serverInfo')->name('server-info');
     Route::post('/server/remove', 'AdminController@removeServer')->name('server-remove');
@@ -27,6 +27,6 @@ Route::middleware(['web', 'admin'])->namespace('Hanoivip\Admin\Controllers')->pr
     //Route::get('/gift');
     
     Route::get('/site', 'SiteController@status')->name('site-status');
-    Route::get('/site/down', 'SiteController@down')->name('site-down');
-    Route::get('/site/up', 'SiteController@up')->name('site-up');
+    Route::post('/site/down', 'SiteController@down')->name('site-down');
+    Route::post('/site/up', 'SiteController@up')->name('site-up');
 });

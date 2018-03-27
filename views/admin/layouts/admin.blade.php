@@ -15,8 +15,6 @@ Quan ly may chu
 
 Quan ly web
 <a href="{{ route('site-status') }}">Trang thai</a>
-<a href="{{ route('site-down') }}">Dong web</a>
-<a href="{{ route('site-up') }}">Mo web</a>
 
 
 @yield('content')

@@ -22,7 +22,7 @@ Longheo TODO: hien thi cac loai tai khoan va gia tri
 		<button type="submit">Add Balance</button>
 </form>
 
-<form method="GET" action="{{ route('balance-history') }}">
+<form method="POST" action="{{ route('balance-history') }}">
 	{{ csrf_field() }}
 		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
 		<button type="submit">View History</button>

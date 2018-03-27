@@ -3,6 +3,13 @@
 	"description" : "Administrative Component",
 	"type" : "library",
 	"repositories" : [
+   {
+        "type": "path",
+        "url": "../gate-client",
+        "options": {
+            "symlink": true
+        }
+    },
 		{
 			"type" : "path",
 			"url" : "../payment-client",
@@ -24,6 +31,7 @@
 		"laravel/framework" : "5.5.*",
 		"laravel/tinker" : "~1.0",
 		"mervick/curl-helper" : "^1.1",
+        	"hanoivip/gate-client": "dev-master",
 		"hanoivip/payment-client" : "dev-master",
 		"hanoivip/game" : "dev-master"
 	},

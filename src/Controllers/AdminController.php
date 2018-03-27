@@ -172,7 +172,7 @@ class AdminController extends Controller
             Log::error('Admin add server exception: ' . $ex->getMessage());
             $error_message = __('admin.user.add-server.exception');
         }
-        return view('hanoivip::admin.process-result',
+        return view('hanoivip::admin.server-result',
             ['message' => $message, 'error_message' => $error_message]);
     }
     
@@ -191,7 +191,7 @@ class AdminController extends Controller
             Log::error('Admin remove server exception: ' . $ex->getMessage());
             $error_message = __('admin.user.remove-server.exception');
         }
-        return view('hanoivip::admin.process-result',
+        return view('hanoivip::admin.server-result',
             ['message' => $message, 'error_message' => $error_message]);
     }
 }

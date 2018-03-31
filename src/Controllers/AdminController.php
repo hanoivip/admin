@@ -52,7 +52,7 @@ class AdminController extends Controller
                 return view('hanoivip::admin.user-find', ['error_message' => __('admin.user.not-found')]);
             else
                 return view('hanoivip::admin.user-detail',
-                    ['tid' => $tid, 'personal' => $info['personal'], 'secure' => $info['secure']]);
+                    ['tid' => $info['id'], 'personal' => $info['personal'], 'secure' => $info['secure']]);
         }
         catch (Exception $ex)
         {

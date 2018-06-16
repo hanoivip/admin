@@ -5,6 +5,7 @@ namespace Hanoivip\Admin\Services;
 use Illuminate\Support\Facades\Log;
 use CurlHelper;
 use Exception;
+use Hanoivip\PassportGuard\Models\AppUser;
 
 class PassportClient
 {
@@ -26,6 +27,20 @@ class PassportClient
         if ($response['data'] === false)
             throw new Exception('Passport info response is invalid (not json).');
         return $response['data'];
+    }
+    
+    public function fetchAuthenticable($uid)
+    {
+        $url = config('passport.uri') . '/api/admin/user?uid=' . $uid;
+        Log::debug('Passport fetch user info uri:' . $url);
+        $response = CurlHelper::factory($url)->exec();
+        if ($response['status'] == 404)
+            return null;
+        if ($response['status'] != 200)
+            throw new Exception('Passport user info error');
+        if ($response['data'] === false)
+            throw new Exception('Passport info response is invalid (not json).');
+        return new AppUser($response['data']['personal']);
     }
     
     /**

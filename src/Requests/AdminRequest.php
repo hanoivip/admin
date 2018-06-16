@@ -16,15 +16,6 @@ class AdminRequest extends FormRequest
     public function authorize()
     {
         return true;
-        
-        if (Auth::guard('token')->check())
-        {
-            $uid = Auth::guard('token')->user()['id'];
-            $role = UserRole::find($uid);
-            if (!empty($role))
-                return $role->role == 'admin';
-        }
-        return false;
     }
 
     /**

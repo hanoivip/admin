@@ -11,9 +11,11 @@ class CheckAdmin
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('token')->check())
+        //if (Auth::guard('token')->check())
+        if (Auth::check())
         {
-            $uid = Auth::guard('token')->user()['id'];
+            //$uid = Auth::guard('token')->user()['id'];
+            $uid = Auth::user()->getAuthIdentifier();
             $role = UserRole::find($uid);
             if (!empty($role) && $role->role == 'admin')
                 return $next($request);

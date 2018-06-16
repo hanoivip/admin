@@ -19,33 +19,5 @@ class LibServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../views', 'hanoivip');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-        
-        /* Multiple way of controlling authorization
-         * 1. Gate
-         * 2. Policy
-         * 3. Route middleware
-         * 
-        Gate::define('is_admin', function () {
-            Log::debug('Authorize check current player is admin');
-            if (Auth::guard('token')->check())
-            {
-                $uid = Auth::guard('token')->user()['id'];
-                $role = UserRole::find($uid);
-                if (!empty($role))
-                    return $role->role == 'admin';
-            }
-            return false;
-        });
-        
-        Gate::define('is_moderator', function () {
-            if (Auth::guard('token')->check())
-            {
-                $uid = Auth::guard('token')->user()['id'];
-                $role = UserRole::find($uid);
-                if (!empty($role))
-                    return $role->role == 'admin';
-            }
-            return false;
-        });*/
     }
 }

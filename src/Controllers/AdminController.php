@@ -13,6 +13,8 @@ use Hanoivip\PaymentClient\BalanceUtil;
 use Hanoivip\Game\Server;
 use Hanoivip\Game\Services\ServerService;
 use Hanoivip\GateClient\Services\TopupService;
+use Hanoivip\GateClient\Events\UserTopup;
+use Hanoivip\Events\Game\UserRecharge;
 
 class AdminController extends Controller
 {
@@ -106,6 +108,32 @@ class AdminController extends Controller
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
+    }
+    
+    public function testActivity(AdminRequest $request)
+    {
+        $tid = $request->input('tid');
+        return view('hanoivip::admin.activity-test', ['tid' => $tid]);
+    }
+    
+    public function fakeTopup(AdminRequest $request)
+    {
+        $tid = $request->input('tid');
+        $coin = $request->input('topup');
+        event(new UserTopup($tid, 0, $coin, ""));
+        return view('hanoivip::admin.process-result',
+            ['tid' => $tid, 'message' => __('event.test.topup.success')]);
+    }
+    
+    public function fakeRecharge(AdminRequest $request)
+    {
+        $tid = $request->input('tid');
+        $coin = $request->input('recharge');
+        $svname = $request->input('svname');
+        $role = $request->input('role');
+        event(new UserRecharge($tid, 0, $coin, $svname, ['roleid' => $role]));
+        return view('hanoivip::admin.process-result',
+            ['tid' => $tid, 'message' => __('event.test.recharge.success')]);
     }
     
     public function balanceInfo(AdminRequest $request)

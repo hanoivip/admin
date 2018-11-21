@@ -17,6 +17,9 @@ Route::middleware(['web', 'admin'])
     Route::post('/user/band', 'AdminController@bandUser')->name('user-band');
     Route::post('/user/unband', 'AdminController@unbandUser')->name('user-unband');
     Route::post('/user/message', 'AdminController@messageUser')->name('user-message');
+    Route::get('/user/activity/test', 'AdminController@testActivity')->name('event.test');
+    Route::post('/user/activity/test/topup', 'AdminController@fakeTopup')->name('event.test.topup');
+    Route::post('/user/activity/test/recharge', 'AdminController@fakeRecharge')->name('event.test.recharge');
     
     Route::get('/balance', 'AdminController@balanceInfo')->name('balance-info');
     Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
@@ -29,6 +32,7 @@ Route::middleware(['web', 'admin'])
     Route::get('/site', 'SiteController@status')->name('site-status');
     Route::post('/site/down', 'SiteController@down')->name('site-down');
     Route::post('/site/up', 'SiteController@up')->name('site-up');
+    
    
 });
 

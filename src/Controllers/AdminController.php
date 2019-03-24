@@ -10,7 +10,6 @@ use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\PaymentClient\BalanceUtil;
-use Hanoivip\Game\Server;
 use Hanoivip\Game\Services\ServerService;
 use Hanoivip\GateClient\Services\TopupService;
 use Hanoivip\GateClient\Events\UserTopup;

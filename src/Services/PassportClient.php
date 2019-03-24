@@ -5,9 +5,9 @@ namespace Hanoivip\Admin\Services;
 use Illuminate\Support\Facades\Log;
 use CurlHelper;
 use Exception;
-use Hanoivip\PassportGuard\Models\AppUser;
+use Hanoivip\Admin\IPassportClient;
 
-class PassportClient
+class PassportClient implements IPassportClient
 {
     /**
      * Lấy các thông tin của người chơi từ passport.
@@ -17,7 +17,7 @@ class PassportClient
      */
     public function fetchAllInfo($uid)
     {
-        $url = config('passport.uri') . '/api/admin/user?uid=' . $uid;
+        $url = config('admin.passport') . '/api/admin/user?uid=' . $uid;
         Log::debug('Passport fetch user info uri:' . $url);
         $response = CurlHelper::factory($url)->exec();
         if ($response['status'] == 404)
@@ -29,20 +29,6 @@ class PassportClient
         return $response['data'];
     }
     
-    public function fetchAuthenticable($uid)
-    {
-        $url = config('passport.uri') . '/api/admin/user?uid=' . $uid;
-        Log::debug('Passport fetch user info uri:' . $url);
-        $response = CurlHelper::factory($url)->exec();
-        if ($response['status'] == 404)
-            return null;
-        if ($response['status'] != 200)
-            throw new Exception('Passport user info error');
-        if ($response['data'] === false)
-            throw new Exception('Passport info response is invalid (not json).');
-        return new AppUser($response['data']['personal']);
-    }
-    
     /**
      * Thiết lập mật khẩu mặc định
      * 
@@ -51,7 +37,7 @@ class PassportClient
      */
     public function resetPassword($uid)
     {
-        $url = config('passport.uri') . '/api/admin/pass/reset?uid=' . $uid;
+        $url = config('admin.passport') . '/api/admin/pass/reset?uid=' . $uid;
         $response = CurlHelper::factory($url)->exec();
         if ($response['content'] === 'ok')
             return true;
@@ -68,7 +54,7 @@ class PassportClient
      */
     public function generatePersonalToken($uid)
     {
-        $url = config('passport.uri') . '/api/admin/token?uid=' . $uid;
+        $url = config('admin.passport') . '/api/admin/token?uid=' . $uid;
         $response = CurlHelper::factory($url)->exec();
         if ($response['status'] != 200)
         {

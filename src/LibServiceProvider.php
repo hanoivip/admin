@@ -11,6 +11,7 @@ class LibServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../views' => resource_path('views/vendor/hanoivip'),
             __DIR__ . '/../config/admin.php' => config_path('admin.php'),
+            __DIR__.'/../lang' => resource_path('lang/vendor/hanoivip'),
         ]);
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadViewsFrom(__DIR__ . '/../views', 'hanoivip');
@@ -22,5 +23,8 @@ class LibServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/admin.php', 'admin');
+        $this->commands([
+            \Hanoivip\Admin\Commands\AdminAdd::class,
+        ]);
     }
 }

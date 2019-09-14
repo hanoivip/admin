@@ -5,11 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'admin'])
 ->namespace('Hanoivip\Admin\Controllers')->prefix('ecmin')->group(function () {
-    
-    Route::get('/', function () {
-        return redirect()->route('user-find');
-    })->name('admin-home');
-    
+
+    Route::get('/', 'AdminController@findUser')->name('admin-home');
     Route::get('/user/find', 'AdminController@findUser')->name('user-find');
     Route::any('/user/detail', 'AdminController@detailUser')->name('user-detail');
     Route::get('/user/logas', 'AdminController@logasUser')->name('user-logas');

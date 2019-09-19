@@ -11,10 +11,8 @@ class CheckAdmin
 {
     public function handle($request, Closure $next)
     {
-        //if (Auth::guard('token')->check())
         if (Auth::check())
         {
-            //$uid = Auth::guard('token')->user()['id'];
             $uid = Auth::user()->getAuthIdentifier();
             $role = UserRole::find($uid);
             if (!empty($role) && $role->role == 'admin')
@@ -22,6 +20,6 @@ class CheckAdmin
             else
                 Log::error('CheckAdmin detect non-authorized access from user:' . $uid);
         }
-        return redirect()->route('home');
+        return response('Unauthorized.', 401);
     }
 }

@@ -12,8 +12,8 @@ use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\PaymentClient\BalanceUtil;
 use Hanoivip\Game\Services\ServerService;
 use Hanoivip\GateClient\Services\TopupService;
-use Hanoivip\GateClient\Events\UserTopup;
 use Hanoivip\Events\Game\UserRecharge;
+use Hanoivip\Events\Gate\UserTopup;
 
 class AdminController extends Controller
 {

@@ -12,16 +12,10 @@
 <p>{{ $error_message }}</p>
 @endif
 
-@if (isset($tid))
 <form method="POST" action="{{ route('user-detail') }}">
 {{ csrf_field() }}
 	<input id="tid" name="tid" type="hidden" value="{{$tid}}">
 	<button type="submit">Quay lai</button>
 </form>
-@else
-<form method="GET" action="{{ route('admin-home') }}">
-	<button type="submit">Quay lai</button>
-</form>
-@endif
 
 @endsection

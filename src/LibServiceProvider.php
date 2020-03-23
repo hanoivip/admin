@@ -12,6 +12,7 @@ class LibServiceProvider extends ServiceProvider
             __DIR__.'/../views' => resource_path('views/vendor/hanoivip'),
             __DIR__ . '/../config/admin.php' => config_path('admin.php'),
             __DIR__.'/../lang' => resource_path('lang/vendor/hanoivip'),
+            __DIR__.'/../resources' =>public_path(),
         ]);
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadViewsFrom(__DIR__ . '/../views', 'hanoivip');

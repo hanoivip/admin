@@ -113,18 +113,25 @@
         
         <li class="active">
           <a href="{{ route('user-find') }}">
-            <i class="fa fa-table"></i> <span>User</span>
+            <i class="fa fa-table"></i> <span>Users</span>
           </a>
         </li>
         <li>
           <a href="{{ route('server-info') }}">
-            <i class="fa fa-laptop"></i> <span>Server</span>
+            <i class="fa fa-laptop"></i> <span>Servers</span>
           </a>
         </li>
         @if (Route::has('ecmin.policy'))
     	<li>
           <a href="{{ route('ecmin.policy') }}">
-            <i class="fa fa-laptop"></i> <span>Khuyen Mai Nap</span>
+            <i class="fa fa-laptop"></i> <span>KHuyến Mãi</span>
+          </a>
+        </li>
+        @endif
+        @if (Route::has('ecmin.income'))
+    	<li>
+          <a href="{{ route('ecmin.income') }}">
+            <i class="fa fa-laptop"></i> <span>Doanh số</span>
           </a>
         </li>
         @endif

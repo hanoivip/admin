@@ -10,10 +10,10 @@ use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\PaymentClient\BalanceUtil;
-use Hanoivip\Game\Services\ServerService;
 use Hanoivip\GateClient\Services\TopupService;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
+use Hanoivip\Game\Facades\ServerFacade;
 
 class AdminController extends Controller
 {
@@ -21,19 +21,15 @@ class AdminController extends Controller
     
     protected $balances;
     
-    protected $servers;
-    
     protected $topup;
     
     public function __construct(
         PassportClient $passport, 
         BalanceUtil $balances,
-        ServerService $servers,
         TopupService $topup)
     {
         $this->passport = $passport;
         $this->balances = $balances;
-        $this->servers = $servers;
         $this->topup = $topup;
     }
     
@@ -189,7 +185,7 @@ class AdminController extends Controller
     
     public function serverInfo()
     {
-        $all = $this->servers->getAll();
+        $all = ServerFacade::getAll();
         return view('hanoivip::admin.server-info', ['servers' => $all]);
     }
     
@@ -201,7 +197,7 @@ class AdminController extends Controller
         {
             $params = $request->all();
             //unset($params['_token']);
-            $this->servers->addNew($params);
+            ServerFacade::addNew($params);
             $message = __('admin.user.add-server.success');
         }
         catch (Exception $ex)
@@ -220,7 +216,7 @@ class AdminController extends Controller
         $error_message = '';
         try
         {
-            $this->servers->removeByIdent($ident);
+            ServerFacade::removeByIdent($ident);
             $message = __('admin.user.remove-server.success');
         }
         catch (Exception $ex)

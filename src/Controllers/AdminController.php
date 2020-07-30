@@ -9,7 +9,7 @@ use Hanoivip\Admin\Requests\AddBalance;
 use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
-use Hanoivip\PaymentClient\BalanceUtil;
+use Hanoivip\GateClient\Facades\BalanceFacade;
 use Hanoivip\GateClient\Services\TopupService;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
@@ -19,17 +19,13 @@ class AdminController extends Controller
 {
     protected $passport;
     
-    protected $balances;
-    
     protected $topup;
     
     public function __construct(
-        PassportClient $passport, 
-        BalanceUtil $balances,
+        PassportClient $passport,
         TopupService $topup)
     {
         $this->passport = $passport;
-        $this->balances = $balances;
         $this->topup = $topup;
     }
     
@@ -138,7 +134,7 @@ class AdminController extends Controller
         $error_message = '';
         try 
         {
-            $info = $this->balances->getInfo($tid);
+            $info = BalanceFacade::getInfo($tid);
             return view('hanoivip::admin.balance-info', 
                 ['tid' => $tid, 'balances' => $info]);
         }
@@ -160,7 +156,7 @@ class AdminController extends Controller
         $error_message = '';
         try 
         {
-            if ($this->balances->add($tid, $balance, $reason))
+            if (BalanceFacade::add($tid, $balance, $reason))
                 $message = __('admin.user.add-balance.sucess');
             else
                 $error_message = __('admin.user.add-balance.fail');
@@ -178,7 +174,7 @@ class AdminController extends Controller
     {
         $tid = $request->input('tid');
         $submits = $this->topup->getHistory($tid);
-        $mods = $this->balances->getHistory($tid);
+        $mods = BalanceFacade::getHistory($tid);
         return view('hanoivip::admin.balance-history', 
             ['tid' => $tid,'submits' => $submits, 'mods' => $mods]);
     }

@@ -27,6 +27,7 @@ class LibServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/admin.php', 'admin');
         $this->commands([
             \Hanoivip\Admin\Commands\AdminAdd::class,
+            \Hanoivip\Admin\Commands\AdminSupporter::class,
         ]);
         $this->app->bind('admin', AdminService::class);
     }

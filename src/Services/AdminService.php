@@ -7,22 +7,23 @@ use Hanoivip\Admin\ViewObjects\UserRoleVO;
 
 class AdminService
 {
-    public function addRole($uid, $displayName, $role)
+    public function addRole($uid, $displayName, $roleName)
     {
-        $role = UserRole::where('user_id', $uid)->get();
-        if ($role->isEmpty())
+        $roleRc = UserRole::where('user_id', $uid)->get();
+        if ($roleRc->isEmpty())
         {
-            $role = new UserRole();
-            $role->user_id = $uid;
-            $role->display_name = $displayName;
-            $role->role = $role;
+            $roleRc = new UserRole();
+            $roleRc->user_id = $uid;
+            $roleRc->display_name = $displayName;
+            $roleRc->role = $roleRc;
         }
         else
         {
-            $role = $role->first();
-            $role->role = $role->role . ',' . $role;
+            $roleRc = $roleRc->first();
+            $roleRc->display_name = $displayName;
+            $roleRc->role = $roleRc->role . ',' . $roleName;
         }
-        $role->save();
+        $roleName->save();
         return true;
     }
     

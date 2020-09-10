@@ -5,21 +5,21 @@ namespace Hanoivip\Admin\Commands;
 use Illuminate\Console\Command;
 use Hanoivip\Admin\Services\AdminService;
 
-class AdminAdd extends Command
+class AdminSupporter extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'admin:add {uid} {display_name}';
+    protected $signature = 'admin:add-gm {uid} {display_name}';
     
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Add user to admin by Id';
+    protected $description = 'Add user to supporter gropu by Id';
     
     private $service;
     
@@ -43,7 +43,7 @@ class AdminAdd extends Command
     {
         $uid = $this->argument('uid');
         $name = $this->argument('display_name');
-        $this->service->addRole($uid, $name, 'admin');
+        $this->service->addRole($uid, $name, 'supporter');
         $this->info("done");
     }
 }

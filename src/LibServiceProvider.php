@@ -2,6 +2,7 @@
 
 namespace Hanoivip\Admin;
 
+use Hanoivip\Admin\Services\AdminService;
 use Illuminate\Support\ServiceProvider;
 
 class LibServiceProvider extends ServiceProvider
@@ -27,5 +28,6 @@ class LibServiceProvider extends ServiceProvider
         $this->commands([
             \Hanoivip\Admin\Commands\AdminAdd::class,
         ]);
+        $this->app->bind('admin', AdminService::class);
     }
 }

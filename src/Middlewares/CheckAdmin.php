@@ -15,7 +15,7 @@ class CheckAdmin
         {
             $uid = Auth::user()->getAuthIdentifier();
             $role = UserRole::find($uid);
-            if (!empty($role) && $role->role == 'admin')
+            if (!empty($role) && strpos($role->role, 'admin') !== false)
                 return $next($request);
             else
                 Log::error('CheckAdmin detect non-authorized access from user:' . $uid);

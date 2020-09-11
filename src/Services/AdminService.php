@@ -15,7 +15,7 @@ class AdminService
             $roleRc = new UserRole();
             $roleRc->user_id = $uid;
             $roleRc->display_name = $displayName;
-            $roleRc->role = $roleRc;
+            $roleRc->role = $roleName;
         }
         else
         {
@@ -23,7 +23,7 @@ class AdminService
             $roleRc->display_name = $displayName;
             $roleRc->role = $roleRc->role . ',' . $roleName;
         }
-        $roleName->save();
+        $roleRc->save();
         return true;
     }
     

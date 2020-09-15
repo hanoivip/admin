@@ -19,6 +19,12 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE/css/AdminLTE.min.css') }}">
   <link rel="stylesheet" href="{{ asset('AdminLTE/css/_all-skins.min.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+@if (Auth::check())
+<script type="text/javascript">
+	var API_TOKEN = "{{ Request::user()->api_token }}";
+</script>
+@endif
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -147,6 +153,13 @@
             <li><a href="{{ route('gift.package.list') }}"><i class="fa fa-circle-o"></i>Gift Templates</a></li>
             <li><a href="{{ route('gift.batch-generate.ui') }}"><i class="fa fa-circle-o"></i>Gift</a></li>
           </ul>
+        </li>
+        @endif
+        @if (Route::has('ecmin.messages'))
+    	<li>
+          <a href="{{ route('ecmin.messages') }}">
+            <i class="fa fa-laptop"></i> <span>Messages</span>
+          </a>
         </li>
         @endif
       </ul>
@@ -374,5 +387,9 @@
 <script src="{{ asset('AdminLTE/js/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
+
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+@stack('scripts')
+	
 </body>
 </html>

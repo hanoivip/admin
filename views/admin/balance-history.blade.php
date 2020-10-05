@@ -71,29 +71,26 @@
 @if (empty($mods))
 <p>Chưa từng chuyển xu</p>
 @else
-<ul class="ListServer" style="display:block;color:black;height: 300px;min-width: 700px;width:100%;overflow: auto;padding-left: 10px; padding: 10px 0 0 10px;">
 
-<li id='recharge' style="width: 100%;height: auto;">
-<ul>
-    <li>Loại</li>
-    <li>Số xu</li>
-    <li>Lý do</li>
-    <li>Thời gian</li>
-</ul>
-
+<table>
+<tr>
+    <th>Loại</th>
+    <th>Số xu</th>
+    <th>Lý do</th>
+    <th>Thời gian</th>
+</tr>
 @foreach ($mods as $mod)
-<ul>
-    <li>{{$mod->acc_type}}</li>
-    <li>{{$mod->balance}}</li>
-    <li>{{$mod->reason}}</li>
-    <li>{{$mod->time}}</li>
-</ul>
+<tr>
+    <td>{{$mod->acc_type}}</td>
+    <td>{{$mod->balance}}</td>
+    <td>{{$mod->reason}}</td>
+    <td>{{$mod->time}}</td>
+</tr>
 @endforeach
+</table>
 
 @endif
-</li>
 
-</ul>
 
 <form method="GET" action="{{ route('balance-info') }}">
 	<input id="tid" name="tid" type="hidden" value="{{$tid}}">

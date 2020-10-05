@@ -46,16 +46,22 @@
 
 <li style="width: 100%;    height: auto;">
 	<ul>
-		<li>Serial</li>
+		<li>Trạng thái</li>
 		<li>Mã Thẻ</li>
-		<li>Mệnh giá</li>
+		<li>Giá trị đã chọn</li>
+		<li>Giá trị thẻ</li>
+		<li>Phạt</li>
+		<li>Thực nhận</li>
 		<li>Thời gian</li>
 	</ul>
     @foreach ($submits as $submit)
     <ul>
-        <li>{{$submit->serial}}</li>
+        <li>{{$submit->status}}</li>
         <li>{{$submit->password}}</li>
-        <li>{{$submit->message}}</li>
+        <li>{{$submit->dvalue}}</li>
+        <li>{{$submit->value}}</li>
+        <li>{{$submit->penalty}}</li>
+        <li>{{ min($submit->dvalue, $submit->value) * (100 - $submit->penalty) / 100 }}</li>
         <li>{{$submit->time}}</li>
     </ul>
     @endforeach

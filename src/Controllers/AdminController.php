@@ -176,7 +176,7 @@ class AdminController extends Controller
         $submits = $this->topup->getHistory($tid);
         $mods = BalanceFacade::getHistory($tid);
         return view('hanoivip::admin.balance-history', 
-            ['tid' => $tid,'submits' => $submits, 'mods' => $mods]);
+            ['tid' => $tid,'submits' => $submits[0], 'mods' => $mods[0]]);
     }
     
     public function serverInfo()

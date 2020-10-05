@@ -42,34 +42,31 @@
 @if (empty($submits))
 <p>Chưa từng nạp thẻ</p>
 @else
-<ul class="ListServer" style="display:block;color:black;height: 300px;min-width: 700px;width:100%;overflow: auto;padding-left: 10px; padding: 10px 0 0 10px;">
 
-<li style="width: 100%;    height: auto;">
-	<ul>
-		<li>Trạng thái</li>
-		<li>Mã Thẻ</li>
-		<li>Giá trị đã chọn</li>
-		<li>Giá trị thẻ</li>
-		<li>Phạt</li>
-		<li>Thực nhận</li>
-		<li>Thời gian</li>
-	</ul>
+<table>
+	<tr>
+		<th>Trạng thái</th>
+		<th>Mã Thẻ</th>
+		<th>Giá trị đã chọn</th>
+		<th>Giá trị thẻ</th>
+		<th>Phạt</th>
+		<th>Thực nhận</th>
+		<th>Thời gian</th>
+	</tr>
     @foreach ($submits as $submit)
-    <ul>
-        <li>{{$submit->status}}</li>
-        <li>{{$submit->password}}</li>
-        <li>{{$submit->dvalue}}</li>
-        <li>{{$submit->value}}</li>
-        <li>{{$submit->penalty}}</li>
-        <li>{{ min($submit->dvalue, $submit->value) * (100 - $submit->penalty) / 100 }}</li>
-        <li>{{$submit->time}}</li>
-    </ul>
+    <tr>
+        <td>{{$submit->status}}</td>
+        <td>{{$submit->password}}</td>
+        <td>{{$submit->dvalue}}</td>
+        <td>{{$submit->value}}</td>
+        <td>{{$submit->penalty}}</td>
+        <td>{{ min($submit->dvalue, $submit->value) * (100 - $submit->penalty) / 100 }}</td>
+        <td>{{$submit->time}}</td>
+    </tr>
     @endforeach
-
+</table>
 
 @endif
-</li>
-</ul>
 <div class="title">Lịch sử nhận khuyến mãi và mua xu game</div>
 @if (empty($mods))
 <p>Chưa từng chuyển xu</p>

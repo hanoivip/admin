@@ -3,6 +3,8 @@
 namespace Hanoivip\Admin\Controllers;
 
 use Hanoivip\Admin\Services\PassportClient;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use Hanoivip\Admin\Requests\AddBalance;
@@ -13,6 +15,7 @@ use Hanoivip\GateClient\Facades\BalanceFacade;
 use Hanoivip\GateClient\Services\TopupService;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
+use Hanoivip\Game\Facades\GameHelper;
 use Hanoivip\Game\Facades\ServerFacade;
 
 class AdminController extends Controller
@@ -222,5 +225,33 @@ class AdminController extends Controller
         }
         return view('hanoivip::admin.server-result',
             ['message' => $message, 'error_message' => $error_message]);
+    }
+    
+    public function recharge(Request $request)
+    {
+        $tid = $request->input('tid');
+        $servers = ServerFacade::getAll();
+        $packages = GameHelper::getRechargePackages();
+        $selected = $servers->first();
+        if ($request->has('svname'))
+            $selected = $request->input('svname');
+        $roles = GameHelper::getRoles($selected, $tid);
+        $data = [ 'servers' => $servers, 'packs' => $packages,
+            'roles' => $roles, 'tid' => $tid];
+        return view('hanoivip::admin.recharge', $data);
+    }
+    
+    public function doRecharge(Request $request)
+    {
+        $tid = $request->input('tid');
+        $server = $request->input('svname');
+        $package = $request->input('package');
+        $roleid = $request->input('roleid');
+        $uid = Auth::user()->getAuthIdentifier();
+        $result = GameHelper::recharge($uid, $server, $package, $roleid, $tid);
+        if ($result === true)
+            return view('hanoivip::admin.recharge-success');
+        else
+            return view('hanoivip::admin.recharge-fail', ['error' => $result]);
     }
 }

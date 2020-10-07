@@ -1,10 +1,12 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
-
-Route::middleware(['web', 'admin'])
-->namespace('Hanoivip\Admin\Controllers')->prefix('ecmin')->group(function () {
+Route::middleware([
+    'web',
+    'admin'
+])->namespace('Hanoivip\Admin\Controllers')
+    ->prefix('ecmin')
+    ->group(function () {
 
     Route::get('/', 'AdminController@findUser')->name('admin-home');
     Route::get('/user/find', 'AdminController@findUser')->name('user-find');
@@ -17,11 +19,14 @@ Route::middleware(['web', 'admin'])
     Route::get('/user/activity/test', 'AdminController@testActivity')->name('event.test');
     Route::post('/user/activity/test/topup', 'AdminController@fakeTopup')->name('event.test.topup');
     Route::post('/user/activity/test/recharge', 'AdminController@fakeRecharge')->name('event.test.recharge');
-    
+
     Route::get('/balance', 'AdminController@balanceInfo')->name('balance-info');
     Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
     Route::post('/balance/history', 'AdminController@balanceHistory')->name('balance-history');
     
+    Route::get('/recharge', 'AdminController@recharge')->name('admin-recharge');
+    Route::post('/recharge', 'AdminController@doRecharge')->name('admin-recharge-do');
+
     Route::get('/server', 'AdminController@serverInfo')->name('server-info');
     Route::post('/server/remove', 'AdminController@removeServer')->name('server-remove');
     Route::post('/server/add', 'AdminController@addServer')->name('server-add');
@@ -29,8 +34,6 @@ Route::middleware(['web', 'admin'])
     Route::get('/site', 'SiteController@status')->name('site-status');
     Route::post('/site/down', 'SiteController@down')->name('site-down');
     Route::post('/site/up', 'SiteController@up')->name('site-up');
-    
-   
 });
 
 /*

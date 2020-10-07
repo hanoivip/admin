@@ -134,10 +134,18 @@
 			<button type="submit" class="btn btn-primary">Reset mật khẩu</button>
 		</form>
 	</div>
-	<form method="GET" action="{{ route('balance-info') }}">
-		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-		<button type="submit" class="btn btn-primary">Tai khoan xu</button>
-	</form>
+	<div>
+    	<form method="GET" action="{{ route('balance-info') }}">
+    		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+    		<button type="submit" class="btn btn-primary">Tài khoản xu</button>
+    	</form>
+	</div>
+	<div class="action_form">
+		<form method="GET" action="{{ route('admin-recharge') }}">
+			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+			<button type="submit" class="btn btn-primary">Chuyển xu hộ</button>
+		</form>
+	</div>
 	<div class="action_form">
 		<form method="GET" action="{{ route('user-logas') }}">
 			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
@@ -174,7 +182,7 @@
 			<button type="submit" class="btn btn-primary">Send Message</button>
 		</form>
 	</div>
-	</div>
+</div>
 </div>
 </div>
 </section>

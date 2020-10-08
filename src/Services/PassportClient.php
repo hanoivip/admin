@@ -23,7 +23,7 @@ class PassportClient implements IPassportClient
         if ($response['status'] == 404)
             return null;
         if ($response['status'] != 200)
-            throw new Exception('Passport user info error');
+            throw new Exception('Passport user info error. Status: ' . $response['status']);
         if ($response['data'] === false)
             throw new Exception('Passport info response is invalid (not json).');
         return $response['data'];

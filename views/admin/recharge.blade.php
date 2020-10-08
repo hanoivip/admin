@@ -6,12 +6,13 @@
 
 <form method="post" action="{{ route('admin-recharge-do') }}">
 {{ csrf_field() }}
+<input type="hidden" name="tid" value="{{$tid}}"/>
 	<p>Chọn máy chủ:</p>
 	<select id="svname" name="svname"
-		onchange="document.location.href='{{ route('admin-recharge') }}?svname=' + this.value">
+		onchange="document.location.href='{{ route('admin-recharge') }}?svname=' + this.value + '&tid={{$tid}}'">
 		@foreach ($servers as $sv)
 			@if (isset($selected) && $sv->name == $selected)
-				<option value="{{ $sv->name }} selected">{{ $sv->title }}</option>
+				<option value="{{ $sv->name }}" selected>{{ $sv->title }}</option>
 			@else
 				<option value="{{ $sv->name }}">{{ $sv->title }}</option>
 			@endif

@@ -237,7 +237,7 @@ class AdminController extends Controller
             $selected = $request->input('svname');
         $roles = GameHelper::getRoles($selected, $tid);
         $data = [ 'servers' => $servers, 'packs' => $packages,
-            'roles' => $roles, 'tid' => $tid];
+            'roles' => $roles, 'tid' => $tid, 'selected' => $selected];
         return view('hanoivip::admin.recharge', $data);
     }
     

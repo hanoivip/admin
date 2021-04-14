@@ -2,8 +2,7 @@
 	"name" : "hanoivip/admin",
 	"description" : "Administrative Component",
 	"type" : "library",
-	"repositories" : [
-		{
+    "repositories" : [{
 			"type" : "path",
 			"url" : "../gate-client",
 			"options" : {
@@ -11,11 +10,17 @@
 			}
 		}, {
 			"type" : "path",
-			"url" : "../game2",
+			"url" : "../game",
 			"options" : {
-					"symlink" : true
+				"symlink" : true
 			}
-	}
+		}, {
+			"type" : "path",
+			"url" : "../events",
+			"options" : {
+				"symlink" : true
+			}
+		}
 	],
 	"require" : {
 		"php" : ">=7.0.0",
@@ -24,7 +29,7 @@
 		"laravel/framework" : ">=5.5",
 		"laravel/tinker" : "~1.0",
 		"mervick/curl-helper" : "^1.1",
-		"hanoivip/gate-client": "dev-master",
+		"hanoivip/gate-client" : "dev-main",
 		"hanoivip/game" : "dev-master"
 	},
 	"autoload" : {

@@ -3,7 +3,7 @@
 namespace Hanoivip\Admin\Services;
 
 use Illuminate\Support\Facades\Log;
-use CurlHelper;
+use Mervick\CurlHelper;
 use Exception;
 use Hanoivip\Admin\IPassportClient;
 

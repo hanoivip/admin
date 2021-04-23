@@ -28,7 +28,7 @@
 		"guzzlehttp/guzzle" : "^6.3",
 		"laravel/framework" : ">=5.5",
 		"laravel/tinker" : "~1.0",
-		"mervick/curl-helper" : "^1.1",
+		"mervick/curl-helper" : "^2.2",
 		"hanoivip/gate-client" : "dev-main",
 		"hanoivip/game" : "dev-master"
 	},

@@ -20,6 +20,12 @@
 			"options" : {
 				"symlink" : true
 			}
+		}, {
+			"type" : "path",
+			"url" : "../game-contracts",
+			"options" : {
+				"symlink" : true
+			}
 		}
 	],
 	"require" : {
@@ -30,7 +36,8 @@
 		"laravel/tinker" : "~1.0",
 		"mervick/curl-helper" : "^2.2",
 		"hanoivip/gate-client" : "dev-main",
-		"hanoivip/game" : "dev-master"
+		"hanoivip/game" : "dev-master",
+		"hanoivip/game-contracts" : "dev-master"
 	},
 	"autoload" : {
 		"psr-4" : {

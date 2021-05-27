@@ -17,7 +17,11 @@ use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
 use Hanoivip\Game\Facades\GameHelper;
 use Hanoivip\Game\Facades\ServerFacade;
-
+/**
+ * Actor: admin
+ * @author gameo
+ *
+ */
 class AdminController extends Controller
 {
     protected $passport;

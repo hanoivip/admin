@@ -4,7 +4,7 @@
 	"type" : "library",
     "repositories" : [{
 			"type" : "path",
-			"url" : "../gate-client",
+			"url" : "../payment-contract",
 			"options" : {
 				"symlink" : true
 			}
@@ -35,7 +35,7 @@
 		"laravel/framework" : ">=5.5",
 		"laravel/tinker" : "~1.0",
 		"mervick/curl-helper" : "^2.2",
-		"hanoivip/gate-client" : "dev-main",
+		"hanoivip/payment-contract" : "dev-main",
 		"hanoivip/game" : "dev-master",
 		"hanoivip/game-contracts" : "dev-master"
 	},

@@ -11,8 +11,8 @@ use Hanoivip\Admin\Requests\AddBalance;
 use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
-use Hanoivip\GateClient\Facades\BalanceFacade;
-use Hanoivip\GateClient\Services\TopupService;
+use Hanoivip\Payment\Facades\BalanceFacade;
+use Hanoivip\Payment\Services\NewTopupService;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
 use Hanoivip\Game\Facades\GameHelper;
@@ -30,7 +30,7 @@ class AdminController extends Controller
     
     public function __construct(
         PassportClient $passport,
-        TopupService $topup)
+        NewTopupService $topup)
     {
         $this->passport = $passport;
         $this->topup = $topup;

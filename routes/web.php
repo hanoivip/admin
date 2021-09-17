@@ -22,7 +22,6 @@ Route::middleware([
 
     Route::get('/balance', 'AdminController@balanceInfo')->name('balance-info');
     Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
-    Route::post('/balance/history', 'AdminController@balanceHistory')->name('balance-history');
     
     Route::get('/recharge', 'AdminController@recharge')->name('admin-recharge');
     Route::post('/recharge', 'AdminController@doRecharge')->name('admin-recharge-do');

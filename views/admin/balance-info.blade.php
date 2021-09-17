@@ -22,7 +22,6 @@
 						<h4><p>Số dư:{{$bal->balance}}</p></h4>
 						@endforeach
 					@endif
-				
 					
 				</div>
 	            <div class="box-header with-border">
@@ -49,10 +48,15 @@
 	            </form>
 	            
 	            <div class="box-footer">
-                    <form method="POST" action="{{ route('balance-history') }}">
+                    <form method="POST" action="{{ route('ecmin.topup.history') }}">
         					{{ csrf_field() }}
         						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-        						<button class="btn btn-primary" type="submit">View History</button>
+        						<button class="btn btn-primary" type="submit">View History - OldFlow</button>
+        			</form>
+        			<form method="POST" action="{{ route('ecmin.newrecharge.history') }}">
+        					{{ csrf_field() }}
+        						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+        						<button class="btn btn-primary" type="submit">View History - NewFlow</button>
         			</form>
 		            <form method="POST" action="{{ route('user-detail') }}">
 					{{ csrf_field() }}

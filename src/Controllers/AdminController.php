@@ -12,7 +12,6 @@ use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\Payment\Facades\BalanceFacade;
-use Hanoivip\Payment\Services\NewTopupService;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
 use Hanoivip\Game\Facades\GameHelper;
@@ -29,11 +28,9 @@ class AdminController extends Controller
     protected $topup;
     
     public function __construct(
-        PassportClient $passport,
-        NewTopupService $topup)
+        PassportClient $passport)
     {
         $this->passport = $passport;
-        $this->topup = $topup;
     }
     
     public function findUser()
@@ -175,15 +172,6 @@ class AdminController extends Controller
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
-    }
-    
-    public function balanceHistory(AdminRequest $request)
-    {
-        $tid = $request->input('tid');
-        $submits = $this->topup->getHistory($tid);
-        $mods = BalanceFacade::getHistory($tid);
-        return view('hanoivip::admin.balance-history', 
-            ['tid' => $tid,'submits' => $submits[0], 'mods' => $mods[0]]);
     }
     
     public function serverInfo()

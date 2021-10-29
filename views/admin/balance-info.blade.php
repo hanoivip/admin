@@ -48,16 +48,20 @@
 	            </form>
 	            
 	            <div class="box-footer">
-                    <form method="POST" action="{{ route('ecmin.topup.history') }}">
-        					{{ csrf_field() }}
-        						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-        						<button class="btn btn-primary" type="submit">View History - OldFlow</button>
-        			</form>
-        			<form method="POST" action="{{ route('ecmin.newrecharge.history') }}">
-        					{{ csrf_field() }}
-        						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-        						<button class="btn btn-primary" type="submit">View History - NewFlow</button>
-        			</form>
+    	            @if (Route::has('ecmin.topup.history'))
+                        <form method="POST" action="{{ route('ecmin.topup.history') }}">
+            					{{ csrf_field() }}
+            						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+            						<button class="btn btn-primary" type="submit">View History - OldFlow</button>
+            			</form>
+        			@endif
+        			@if (Route::has('ecmin.newrecharge.history'))
+            			<form method="POST" action="{{ route('ecmin.newrecharge.history') }}">
+            					{{ csrf_field() }}
+            						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+            						<button class="btn btn-primary" type="submit">View History - NewFlow</button>
+            			</form>
+        			@endif
 		            <form method="POST" action="{{ route('user-detail') }}">
 					{{ csrf_field() }}
 						<input id="tid" name="tid" type="hidden" value="{{$tid}}">

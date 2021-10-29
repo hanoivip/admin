@@ -162,6 +162,13 @@
           </a>
         </li>
         @endif
+        @if (Route::has('ecmin.newrecharge'))
+    	<li>
+          <a href="{{ route('ecmin.newrecharge') }}">
+            <i class="fa fa-laptop"></i> <span>Quản lý nạp - luồng </span>
+          </a>
+        </li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->

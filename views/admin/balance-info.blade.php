@@ -48,6 +48,7 @@
 	            </form>
 	            
 	            <div class="box-footer">
+	               <!-- 
     	            @if (Route::has('ecmin.topup.history'))
                         <form method="POST" action="{{ route('ecmin.topup.history') }}">
             					{{ csrf_field() }}
@@ -60,6 +61,20 @@
             					{{ csrf_field() }}
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
             						<button class="btn btn-primary" type="submit">View History - NewFlow</button>
+            			</form>
+        			@endif -->
+        			@if (Route::has('ecmin.webtopup.history'))
+            			<form method="POST" action="{{ route('ecmin.webtopup.history') }}">
+            					{{ csrf_field() }}
+            						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+            						<button class="btn btn-primary" type="submit">LS Nạp WebTopup</button>
+            			</form>
+        			@endif
+        			@if (Route::has('ecmin.balance.history'))
+            			<form method="POST" action="{{ route('ecmin.balance.history') }}">
+            					{{ csrf_field() }}
+            						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+            						<button class="btn btn-primary" type="submit">LS Chuyển Xu</button>
             			</form>
         			@endif
 		            <form method="POST" action="{{ route('user-detail') }}">

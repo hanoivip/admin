@@ -130,7 +130,7 @@
         @if (Route::has('ecmin.policy'))
     	<li>
           <a href="{{ route('ecmin.policy') }}">
-            <i class="fa fa-laptop"></i> <span>KHuyến Mãi</span>
+            <i class="fa fa-laptop"></i> <span>Khuyến Mãi</span>
           </a>
         </li>
         @endif
@@ -138,6 +138,13 @@
     	<li>
           <a href="{{ route('ecmin.income') }}">
             <i class="fa fa-laptop"></i> <span>Doanh số</span>
+          </a>
+        </li>
+        @endif
+        @if (Route::has('ecmin.stats'))
+    	<li>
+          <a href="{{ route('ecmin.stats') }}">
+            <i class="fa fa-laptop"></i> <span>Thống kê</span>
           </a>
         </li>
         @endif

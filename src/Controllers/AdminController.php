@@ -174,6 +174,29 @@ class AdminController extends Controller
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
     }
     
+    public function removeBalance(AddBalance $request)
+    {
+        $tid = $request->input('tid');
+        $balance = $request->input('balance');
+        $reason = $request->input('reason');
+        $message = '';
+        $error_message = '';
+        try
+        {
+            if (BalanceFacade::remove($tid, $balance, $reason))
+                $message = __('admin.user.add-balance.sucess');
+                else
+                    $error_message = __('admin.user.add-balance.fail');
+        }
+        catch (Exception $ex)
+        {
+            Log::error('Admin add balance exception: ' . $ex->getMessage());
+            $error_message = __('admin.user.add-balance.exception');
+        }
+        return view('hanoivip::admin.process-result',
+            ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
+    }
+    
     public function serverInfo()
     {
         $all = ServerFacade::getAll();

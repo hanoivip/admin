@@ -27,7 +27,6 @@
 	            <div class="box-header with-border">
 	              <h3 class="box-title">Quản lý xu</h3>
 	            </div>
-	            <!-- 
 	            <form role="form" method="POST" action="{{ route('balance-add') }}">
 	            	{{ csrf_field() }}
 	            	<input id="tid" name="tid" type="hidden" value="{{$tid}}">
@@ -38,13 +37,13 @@
 	                </div>
 	                <div class="form-group">
 	                  <label>Lý Do</label>
-	                  <input id="reason" name="reason" type="text" class="form-control" placeholder="Nhập lý do">
+	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Nhập lý do" value="admin">
 	                </div>
 	              </div>
 	              <div class="box-footer">
 	                <button type="submit" class="btn btn-primary">Thêm xu</button>
 	              </div>
-	            </form> -->
+	            </form>
 	            
 	            <form role="form" method="POST" action="{{ route('balance-remove') }}">
 	            	{{ csrf_field() }}
@@ -56,7 +55,7 @@
 	                </div>
 	                <div class="form-group">
 	                  <label>Lý Do</label>
-	                  <input id="reason" name="reason" type="text" class="form-control" placeholder="Nhập lý do">
+	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Nhập lý do" value="admin">
 	                </div>
 	              </div>
 	              <div class="box-footer">

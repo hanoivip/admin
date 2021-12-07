@@ -24,10 +24,10 @@
 					@endif
 					
 				</div>
+				{{-- 
 	            <div class="box-header with-border">
 	              <h3 class="box-title">Quản lý xu</h3>
 	            </div>
-	            <!-- 
 	            <form role="form" method="POST" action="{{ route('balance-add') }}">
 	            	{{ csrf_field() }}
 	            	<input id="tid" name="tid" type="hidden" value="{{$tid}}">
@@ -42,7 +42,7 @@
 	              <div class="box-footer">
 	                <button type="submit" class="btn btn-primary">Thêm xu</button>
 	              </div>
-	            </form> -->
+	            </form>
 	            
 	            <form role="form" method="POST" action="{{ route('balance-remove') }}">
 	            	{{ csrf_field() }}
@@ -58,10 +58,10 @@
 	              <div class="box-footer">
 	                <button type="submit" class="btn btn-primary">Bớt xu</button>
 	              </div>
-	            </form>
+	            </form> --}}
 	            
 	            <div class="box-footer">
-	               <!-- 
+	               {{-- 
     	            @if (Route::has('ecmin.topup.history'))
                         <form method="POST" action="{{ route('ecmin.topup.history') }}">
             					{{ csrf_field() }}
@@ -75,7 +75,7 @@
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
             						<button class="btn btn-primary" type="submit">View History - NewFlow</button>
             			</form>
-        			@endif -->
+        			@endif --}}
         			@if (Route::has('ecmin.webtopup.history'))
             			<form method="POST" action="{{ route('ecmin.webtopup.history') }}">
             					{{ csrf_field() }}

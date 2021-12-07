@@ -169,10 +169,19 @@
           </a>
         </li>
         @endif
+        <!-- 
         @if (Route::has('ecmin.newrecharge'))
     	<li>
           <a href="{{ route('ecmin.newrecharge') }}">
-            <i class="fa fa-laptop"></i> <span>Quản lý nạp - luồng </span>
+            <i class="fa fa-laptop"></i> <span>Quản lý nạp - newrecharge</span>
+          </a>
+        </li>
+        @endif
+        -->
+        @if (Route::has('ecmin.webtopup'))
+    	<li>
+          <a href="{{ route('ecmin.webtopup') }}">
+            <i class="fa fa-laptop"></i> <span>Quản lý nạp - webtopup</span>
           </a>
         </li>
         @endif

@@ -46,7 +46,7 @@ class AdminController extends Controller
             $info = $this->passport->fetchAllInfo($tid);
             //Log::debug('Passport fetch user info:' . print_r($info, true));
             if (empty($info))
-                return view('hanoivip::admin.user-find', ['error_message' => __('admin.user.not-found')]);
+                return view('hanoivip::admin.user-find', ['error_message' => __('hanoivip::admin.user.not-found')]);
             else
                 return view('hanoivip::admin.user-detail',
                     ['tid' => $info['id'], 'personal' => $info['personal'], 'secure' => $info['secure']]);
@@ -54,7 +54,7 @@ class AdminController extends Controller
         catch (Exception $ex)
         {
             Log::error('Admin find user exception: ' . $ex->getMessage());
-            return view('hanoivip::admin.user-find', ['error_message' => __('admin.user.find-exception')]);
+            return view('hanoivip::admin.user-find', ['error_message' => __('hanoivip::admin.user.find-exception')]);
         }
     }
     
@@ -66,14 +66,14 @@ class AdminController extends Controller
         try
         {
             if ($this->passport->resetPassword($tid))
-                $message = __('admin.user.reset-pass.success');
+                $message = __('hanoivip::admin.user.reset-pass.success');
             else 
-                $error_message = __('admin.user.reset-pass.fail');
+                $error_message = __('hanoivip::admin.user.reset-pass.fail');
         }
         catch (Exception $ex)
         {
             Log::error('Admin reset user password exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.reset-pass.exception');
+            $error_message = __('hanoivip::admin.user.reset-pass.exception');
         }
         return view('hanoivip::admin.process-result', 
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
@@ -89,7 +89,7 @@ class AdminController extends Controller
             $userToken = $this->passport->generatePersonalToken($tid);
             if (empty($userToken))
             {
-                $error_message = __('admin.user.logas.fail');
+                $error_message = __('hanoivip::admin.user.logas.fail');
             }
             else 
             {
@@ -99,7 +99,7 @@ class AdminController extends Controller
         catch (Exception $ex)
         {
             Log::error('Admin logas user exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.logas.exception');
+            $error_message = __('hanoivip::admin.user.logas.exception');
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
@@ -115,7 +115,7 @@ class AdminController extends Controller
     {
         $tid = $request->input('tid');
         $coin = $request->input('topup');
-        event(new UserTopup($tid, 0, $coin, ""));
+        event(new UserTopup($tid, 0, $coin, "Admin test event topup"));
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => __('event.test.topup.success')]);
     }
@@ -145,7 +145,7 @@ class AdminController extends Controller
         catch (Exception $ex)
         {
             Log::error('Admin get user balance info exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.balance-info.exception');
+            $error_message = __('hanoivip::admin.user.balance-info.exception');
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
@@ -161,14 +161,14 @@ class AdminController extends Controller
         try 
         {
             if (BalanceFacade::add($tid, $balance, $reason))
-                $message = __('admin.user.add-balance.sucess');
+                $message = __('hanoivip::admin.user.add-balance.sucess');
             else
-                $error_message = __('admin.user.add-balance.fail');
+                $error_message = __('hanoivip::admin.user.add-balance.fail');
         }
         catch (Exception $ex)
         {
             Log::error('Admin add balance exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.add-balance.exception');
+            $error_message = __('hanoivip::admin.user.add-balance.exception');
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
@@ -184,14 +184,14 @@ class AdminController extends Controller
         try
         {
             if (BalanceFacade::remove($tid, $balance, $reason))
-                $message = __('admin.user.add-balance.sucess');
+                $message = __('hanoivip::admin.user.add-balance.success');
                 else
-                    $error_message = __('admin.user.add-balance.fail');
+                    $error_message = __('hanoivip::admin.user.add-balance.fail');
         }
         catch (Exception $ex)
         {
             Log::error('Admin add balance exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.add-balance.exception');
+            $error_message = __('hanoivip::admin.user.add-balance.exception');
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
@@ -212,12 +212,12 @@ class AdminController extends Controller
             $params = $request->all();
             //unset($params['_token']);
             ServerFacade::addNew($params);
-            $message = __('admin.user.add-server.success');
+            $message = __('hanoivip::admin.user.add-server.success');
         }
         catch (Exception $ex)
         {
             Log::error('Admin add server exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.add-server.exception');
+            $error_message = __('hanoivip::admin.user.add-server.exception');
         }
         return view('hanoivip::admin.server-result',
             ['message' => $message, 'error_message' => $error_message]);
@@ -231,12 +231,12 @@ class AdminController extends Controller
         try
         {
             ServerFacade::removeByIdent($ident);
-            $message = __('admin.user.remove-server.success');
+            $message = __('hanoivip::admin.user.remove-server.success');
         }
         catch (Exception $ex)
         {
             Log::error('Admin remove server exception: ' . $ex->getMessage());
-            $error_message = __('admin.user.remove-server.exception');
+            $error_message = __('hanoivip::admin.user.remove-server.exception');
         }
         return view('hanoivip::admin.server-result',
             ['message' => $message, 'error_message' => $error_message]);

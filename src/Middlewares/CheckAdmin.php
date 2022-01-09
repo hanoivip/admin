@@ -6,6 +6,7 @@ use Hanoivip\Admin\UserRole;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Closure;
+use Illuminate\Support\Facades\App;
 
 class CheckAdmin
 {
@@ -13,6 +14,10 @@ class CheckAdmin
     {
         if (Auth::check())
         {
+            if (App::environment('local')) 
+            {
+                return $next($request);
+            }
             $uid = Auth::user()->getAuthIdentifier();
             $role = UserRole::find($uid);
             if (!empty($role) && strpos($role->role, 'admin') !== false)

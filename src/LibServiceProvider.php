@@ -3,7 +3,9 @@
 namespace Hanoivip\Admin;
 
 use Hanoivip\Admin\Services\AdminService;
+use Hanoivip\Admin\Services\ApiOperator;
 use Illuminate\Support\ServiceProvider;
+use Hanoivip\Admin\Services\DatabaseOperator;
 
 class LibServiceProvider extends ServiceProvider
 {
@@ -30,5 +32,14 @@ class LibServiceProvider extends ServiceProvider
             \Hanoivip\Admin\Commands\AdminSupporter::class,
         ]);
         $this->app->bind('admin', AdminService::class);
+        $ops = config('admin.operator', 'api');
+        if ($ops == 'database')
+        {
+            $this->app->bind(IUserOperator::class, DatabaseOperator::class);
+        }
+        else
+        {
+            $this->app->bind(IUserOperator::class, ApiOperator::class);
+        }
     }
 }

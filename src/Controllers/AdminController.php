@@ -2,7 +2,6 @@
 
 namespace Hanoivip\Admin\Controllers;
 
-use Hanoivip\Admin\Services\PassportClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -16,6 +15,7 @@ use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
 use Hanoivip\Game\Facades\GameHelper;
 use Hanoivip\Game\Facades\ServerFacade;
+use Hanoivip\Admin\IUserOperator;
 /**
  * Actor: admin
  * @author gameo
@@ -28,7 +28,7 @@ class AdminController extends Controller
     protected $topup;
     
     public function __construct(
-        PassportClient $passport)
+        IUserOperator $passport)
     {
         $this->passport = $passport;
     }

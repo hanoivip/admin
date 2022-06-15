@@ -2,7 +2,7 @@
 
 namespace Hanoivip\Admin;
 
-interface IPassportClient
+interface IUserOperator
 {
     /**
      * Lấy các thông tin của người chơi từ passport.

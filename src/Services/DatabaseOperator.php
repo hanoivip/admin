@@ -5,9 +5,9 @@ namespace Hanoivip\Admin\Services;
 use Illuminate\Support\Facades\Log;
 use Mervick\CurlHelper;
 use Exception;
-use Hanoivip\Admin\IPassportClient;
+use Hanoivip\Admin\IUserOperator;
 
-class PassportClient implements IPassportClient
+class DatabaseOperator implements IUserOperator
 {
     /**
      * Lấy các thông tin của người chơi từ passport.
@@ -17,16 +17,6 @@ class PassportClient implements IPassportClient
      */
     public function fetchAllInfo($uid)
     {
-        $url = config('admin.passport') . '/api/admin/user?uid=' . $uid;
-        Log::debug('Passport fetch user info uri:' . $url);
-        $response = CurlHelper::factory($url)->exec();
-        if ($response['status'] == 404)
-            return null;
-        if ($response['status'] != 200)
-            throw new Exception('Passport user info error. Status: ' . $response['status']);
-        if ($response['data'] === false)
-            throw new Exception('Passport info response is invalid (not json).');
-        return $response['data'];
     }
     
     /**

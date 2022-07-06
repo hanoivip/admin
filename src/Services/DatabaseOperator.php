@@ -27,12 +27,6 @@ class DatabaseOperator implements IUserOperator
      */
     public function resetPassword($uid)
     {
-        $url = config('admin.passport') . '/api/admin/pass/reset?uid=' . $uid;
-        $response = CurlHelper::factory($url)->exec();
-        if ($response['content'] === 'ok')
-            return true;
-        Log::debug('Passport reset user pass fail. Err:' . $response['content']);
-        return false;
     }
     
     /**
@@ -44,13 +38,5 @@ class DatabaseOperator implements IUserOperator
      */
     public function generatePersonalToken($uid)
     {
-        $url = config('admin.passport') . '/api/admin/token?uid=' . $uid;
-        $response = CurlHelper::factory($url)->exec();
-        if ($response['status'] != 200)
-        {
-            Log::debug('Passport generate user token error. Return content:' . $response['content']);
-            return;
-        }
-        return $response['content'];
     }
 }

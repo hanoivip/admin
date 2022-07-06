@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'operator' => 'database', // database, passport, api...
-    'passport' => 'http://gunpow.mobi.test/'
+    'operator' => 'api', // database, passport, api...
+    'passport' => 'http://127.0.0.1/'
 ];

@@ -4,36 +4,33 @@
 	"type" : "library",
     "repositories" : [{
 			"type" : "path",
-			"url" : "../payment-contract",
+			"url" : "./payment-contract",
 			"options" : {
 				"symlink" : true
 			}
 		}, {
 			"type" : "path",
-			"url" : "../game",
+			"url" : "./game",
 			"options" : {
 				"symlink" : true
 			}
 		}, {
 			"type" : "path",
-			"url" : "../events",
+			"url" : "./events",
 			"options" : {
 				"symlink" : true
 			}
 		}, {
 			"type" : "path",
-			"url" : "../game-contracts",
+			"url" : "./game-contracts",
 			"options" : {
 				"symlink" : true
 			}
 		}
 	],
 	"require" : {
-		"php" : ">=7.0.0",
-		"fideloper/proxy" : "~4.0",
-		"guzzlehttp/guzzle" : "^6.3",
-		"laravel/framework" : ">=5.5",
-		"laravel/tinker" : "~1.0",
+		"php" : "^7.1.3",
+		"laravel/framework" : "5.8.*",
 		"mervick/curl-helper" : "^2.2",
 		"hanoivip/payment-contract" : "dev-main",
 		"hanoivip/game" : "dev-master",

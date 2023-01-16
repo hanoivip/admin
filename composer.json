@@ -2,7 +2,7 @@
 	"name" : "hanoivip/admin",
 	"description" : "Administrative Component",
 	"type" : "library",
-    "repositories" : [{
+	"repositories" : [{
 			"type" : "path",
 			"url" : "./payment-contract",
 			"options" : {
@@ -39,7 +39,10 @@
 	"autoload" : {
 		"psr-4" : {
 			"Hanoivip\\Admin\\" : "src/"
-		}
+		},
+		"files" : [
+			"src/helper.php"
+		]
 	},
 	"extra" : {
 		"laravel" : {

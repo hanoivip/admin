@@ -16,6 +16,7 @@ use Hanoivip\Events\Gate\UserTopup;
 use Hanoivip\Game\Facades\GameHelper;
 use Hanoivip\Game\Facades\ServerFacade;
 use Hanoivip\Admin\IUserOperator;
+use Hanoivip\Events\User\ServerCreated;
 /**
  * Actor: admin
  * @author gameo
@@ -211,7 +212,8 @@ class AdminController extends Controller
         {
             $params = $request->all();
             //unset($params['_token']);
-            ServerFacade::addNew($params);
+            $record = ServerFacade::addNew($params);
+            event(new ServerCreated($record));
             $message = __('hanoivip::admin.user.add-server.success');
         }
         catch (Exception $ex)

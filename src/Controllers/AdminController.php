@@ -18,11 +18,7 @@ use Hanoivip\Game\Facades\ServerFacade;
 use Hanoivip\Admin\IUserOperator;
 use Hanoivip\Events\Server\ServerCreated;
 use Hanoivip\Admin\Services\AdminService;
-/**
- * Actor: admin
- * @author gameo
- *
- */
+
 class AdminController extends Controller
 {
     protected $passport;
@@ -169,17 +165,18 @@ class AdminController extends Controller
             $role = $this->admin->getRole($tid);
             if (empty($role))
             {
-                $error_message = __('hanoivip.admin::admin.user.add-balance.denied');
+                Log::error("Admin $userId tried to add coin for non-supporter $tid");
+                $error_message = __('hanoivip.admin::admin.balance.add.denied');
             }
             else if (BalanceFacade::add($tid, $balance, $reason))
-                $message = __('hanoivip.admin::admin.user.add-balance.sucess');
+                $message = __('hanoivip.admin::admin.balance.add.sucess');
             else
-                $error_message = __('hanoivip.admin::admin.user.add-balance.fail');
+                $error_message = __('hanoivip.admin::admin.balance.add.fail');
         }
         catch (Exception $ex)
         {
             Log::error('Admin add balance exception: ' . $ex->getMessage());
-            $error_message = __('hanoivip.admin::admin.user.add-balance.exception');
+            $error_message = __('hanoivip.admin::admin.balance.add.exception');
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
@@ -197,17 +194,17 @@ class AdminController extends Controller
             $role = $this->admin->getRole($tid);
             if (empty($role))
             {
-                $error_message = __('hanoivip.admin::admin.user.add-balance.denied');
+                $error_message = __('hanoivip.admin::admin.balance.remove.denied');
             }
             else if (BalanceFacade::remove($tid, $balance, $reason))
-                $message = __('hanoivip.admin::admin.user.add-balance.success');
+                $message = __('hanoivip.admin::admin.balance.remove.success');
             else
-                $error_message = __('hanoivip.admin::admin.user.add-balance.fail');
+                $error_message = __('hanoivip.admin::admin.balance.remove.fail');
         }
         catch (Exception $ex)
         {
             Log::error('Admin add balance exception: ' . $ex->getMessage());
-            $error_message = __('hanoivip.admin::admin.user.add-balance.exception');
+            $error_message = __('hanoivip.admin::admin.user.balance.remove.exception');
         }
         return view('hanoivip::admin.process-result',
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);

@@ -49,4 +49,9 @@ class AdminService
         return $list;
     }
     
+    public function getRole($userId)
+    {
+        return UserRole::where('user_id', $userId)->first();
+    }
+    
 }

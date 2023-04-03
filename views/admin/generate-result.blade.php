@@ -12,19 +12,12 @@
     <div class="row">
       	<div>
       		<div class="box box-primary">
-@if (!empty($message))
-<p> {{ $message }} </p>
-@endif
 
-@if (!empty($error_message))
-<p> Lỗi xảy ra: {{ $error_message }} </p>
-@endif
-
-@if (!empty($codes))
-{{ print_r($codes) }}
-@endif
-</div>
-</div>
-</div>
+                @if (!empty($codes))
+                {{ print_r($codes) }}
+                @endif
+			</div>
+		</div>
+	</div>
 </section>
 @endsection

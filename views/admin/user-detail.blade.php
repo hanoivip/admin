@@ -62,25 +62,25 @@
             		<form method="POST" action="{{ route('user-reset-pass') }}">
             		{{ csrf_field() }}
             			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            			<button type="submit" class="btn btn-primary">Reset mật khẩu</button>
+            			<button type="submit" class="btn btn-primary">Reset pass</button>
             		</form>
             	</div>
             	<div>
                 	<form method="GET" action="{{ route('balance-info') }}">
                 		<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-                		<button type="submit" class="btn btn-primary">Tài khoản xu</button>
+                		<button type="submit" class="btn btn-primary">Manage Balance</button>
                 	</form>
             	</div>
             	<div class="action_form">
             		<form method="GET" action="{{ route('user-logas') }}">
             			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            			<button type="submit" class="btn btn-primary">Logas</button>
+            			<button type="submit" class="btn btn-primary">Logas User</button>
             		</form>
             	</div>
             	<div class="action_form">
             		<form method="GET" action="{{ route('event.test') }}">
             			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            			<button type="submit" class="btn btn-primary">Test Khuyen Mai</button>
+            			<button type="submit" class="btn btn-primary">Test Saleoff</button>
             		</form>
             	</div>
             </div>

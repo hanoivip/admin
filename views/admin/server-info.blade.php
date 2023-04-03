@@ -31,26 +31,26 @@
                 	@if (empty($servers))
 						(( Chua co sv nao ))
 					@else
-						@for ($j=0; $j<count($servers); $j++)
-		                <tr role="row" class="odd">
-		                  	<td class="text-center">{{ $servers[$j]->id }}</td>
-							<td class="text-center">{{ $servers[$j]->name }}</td>
-							<td class="text-center">{{ $servers[$j]->ident }}</td>
-							<td class="text-center">{{ $servers[$j]->title }}</td>
-							<td class="text-center">{{ $servers[$j]->description }}</td>
-							<td class="text-center">{{ $servers[$j]->login_uri }}</td>
-							<td class="text-center">{{ $servers[$j]->recharge_uri }}</td>
-							<td class="text-center">{{ $servers[$j]->operate_uri }}</td>
-							<td class="text-center">{{ $servers[$j]->created_at }}</td>
-							<td class="text-center">
-								<form method="POST" action="{{ route('server-remove') }}">
-								{{ csrf_field() }}
-									<input id="ident" name="ident" type="hidden" value="{{$servers[$j]->ident}}">
-									<button type="submit" class="btn btn-primary">Delete</button>
-								</form>
-							</td>
-		                </tr>
-	                @endfor
+						@foreach ($servers as $server)
+    		                <tr role="row" class="odd">
+    		                  	<td class="text-center">{{ $server->id }}</td>
+    							<td class="text-center">{{ $server->name }}</td>
+    							<td class="text-center">{{ $server->ident }}</td>
+    							<td class="text-center">{{ $server->title }}</td>
+    							<td class="text-center">{{ $server->description }}</td>
+    							<td class="text-center">{{ $server->login_uri }}</td>
+    							<td class="text-center">{{ $server->recharge_uri }}</td>
+    							<td class="text-center">{{ $server->operate_uri }}</td>
+    							<td class="text-center">{{ $server->created_at }}</td>
+    							<td class="text-center">
+    								<form method="POST" action="{{ route('server-remove') }}">
+    								{{ csrf_field() }}
+    									<input id="ident" name="ident" type="hidden" value="{{$server->ident}}">
+    									<button type="submit" class="btn btn-primary">Delete</button>
+    								</form>
+    							</td>
+    		                </tr>
+    	                @endforeach
 				@endif
 	            </tbody>
             </table>
@@ -74,12 +74,12 @@
 	Operate Uri
 	<input id="operate_uri" name="operate_uri" type="text">
 	
-	<button type="submit" class="btn btn-primary">Thêm</button>
+	<button type="submit" class="btn btn-primary">Add</button>
 </form>
 
 <form method="GET" action="{{ route('user-find') }}">
 {{ csrf_field() }}
-	<button type="submit" class="btn btn-primary">Quay lại</button>
+	<button type="submit" class="btn btn-primary">Back</button>
 </form>
 	
 </div>

@@ -1,31 +1,27 @@
 @extends('hanoivip::admin.layouts.admin')
 
-@section('title', 'Quan ly')
+@section('title', 'Find user')
 
 @section('content')
 
 <section class="content-header">
   <h4>
-    Quản lý tài khoản<small>Search</small>
+    Manager users<small>Search</small>
   </h4>
 </section>
  <section class="content">
     <div class="row">
       	<div>
       		<div class="box box-primary">
-				@if (!empty($error_message))
-				<p> {{ $error_message }} </p>
-				@endif
-
 				<form method="POST" action="{{ route('user-detail') }}">
 				{{ csrf_field() }}
 					<div class="box-body">
 		                <div class="form-group">
-		                	<input id="tid" name="tid" type="text" value="{{ old('tid') }}" class="form-control" placeholder="Nhập ID người dùng" required autofocus>
+		                	<input id="tid" name="tid" type="text" value="{{ old('tid') }}" class="form-control" placeholder="User ID/Username/Email" required autofocus>
 		                </div>
 		            </div>
 		            <div class="box-footer">
-							<button type="submit" class="btn btn-primary">Tìm kiếm</button>
+							<button type="submit" class="btn btn-primary">Find</button>
 					</div>
 				</form>
 			</div>

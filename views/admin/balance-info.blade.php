@@ -15,32 +15,32 @@
       		<div class="box box-primary">
       			<div class="box-header with-border">
       				@if (empty($balances))
-						<h4>(( Chưa có tài khoản ))</h4>
+						<h4>Have no any payment</h4>
 					@else
 						@foreach ($balances as $bal)
-						<h4><p>Loại tài khoản:{{$bal->balance_type}}</p></h4>
-						<h4><p>Số dư:{{$bal->balance}}</p></h4>
+							<p>Balance type:{{$bal->balance_type}}</p>
+							<p>Amount:{{$bal->balance}}</p>
 						@endforeach
 					@endif
 					
 				</div>
-				{{-- 
+				
 	            <div class="box-header with-border">
-	              <h3 class="box-title">Quản lý xu</h3>
+	              <h3 class="box-title">Webcoins</h3>
 	            </div>
 	            <form role="form" method="POST" action="{{ route('balance-add') }}">
 	            	{{ csrf_field() }}
 	            	<input id="tid" name="tid" type="hidden" value="{{$tid}}">
 	              <div class="box-body">
 	                <div class="form-group">
-	                  <input id="balance" name="balance" type="text" class="form-control" placeholder="Nhập số xu">
+	                  <input id="balance" name="balance" type="text" class="form-control" placeholder="Amount to add">
 	                </div>
 	                <div class="form-group">
-	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Nhập lý do" value="admin">
+	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Add Reason" value="admin panel">
 	                </div>
 	              </div>
 	              <div class="box-footer">
-	                <button type="submit" class="btn btn-primary">Thêm xu</button>
+	                <button type="submit" class="btn btn-primary">Add coin</button>
 	              </div>
 	            </form>
 	            
@@ -49,16 +49,16 @@
 	            	<input id="tid" name="tid" type="hidden" value="{{$tid}}">
 	              <div class="box-body">
 	                <div class="form-group">
-	                  <input id="balance" name="balance" type="text" class="form-control" placeholder="Nhập số xu">
+	                  <input id="balance" name="balance" type="text" class="form-control" placeholder="Amount to remove">
 	                </div>
 	                <div class="form-group">
-	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Nhập lý do" value="admin">
+	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Remove Reason" value="admin panel">
 	                </div>
 	              </div>
 	              <div class="box-footer">
-	                <button type="submit" class="btn btn-primary">Bớt xu</button>
+	                <button type="submit" class="btn btn-primary">Remove coin</button>
 	              </div>
-	            </form> --}}
+	            </form>
 	            
 	            <div class="box-footer">
 	               {{-- 

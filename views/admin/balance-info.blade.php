@@ -18,7 +18,7 @@
 					@else
 						@foreach ($balances as $bal)
 							<p>Balance type:{{$bal->balance_type}}</p>
-							<p>Amount:{{$bal->balance}} webcoin</p>
+							<p>Amount:{{$bal->balance}} webcoins</p>
 						@endforeach
 					@endif
 					

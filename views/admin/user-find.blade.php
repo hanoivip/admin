@@ -6,7 +6,7 @@
 
 <section class="content-header">
   <h4>
-    Manager users<small>Search</small>
+    Search for a user
   </h4>
 </section>
  <section class="content">

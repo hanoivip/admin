@@ -5,8 +5,7 @@
 @section('content')
 <section class="content-header">
   <h4>
-    Thông Tin Tài Khoản
-    <small>Xu</small>
+    User balance info
   </h4>
 </section>
  <section class="content">
@@ -19,14 +18,14 @@
 					@else
 						@foreach ($balances as $bal)
 							<p>Balance type:{{$bal->balance_type}}</p>
-							<p>Amount:{{$bal->balance}}</p>
+							<p>Amount:{{$bal->balance}} webcoin</p>
 						@endforeach
 					@endif
 					
 				</div>
 				
 	            <div class="box-header with-border">
-	              <h3 class="box-title">Webcoins</h3>
+	              <h3 class="box-title">Add/remove Webcoins</h3>
 	            </div>
 	            <form role="form" method="POST" action="{{ route('balance-add') }}">
 	            	{{ csrf_field() }}
@@ -61,39 +60,38 @@
 	            </form>
 	            
 	            <div class="box-footer">
-	               {{-- 
     	            @if (Route::has('ecmin.topup.history'))
                         <form method="POST" action="{{ route('ecmin.topup.history') }}">
             					{{ csrf_field() }}
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            						<button class="btn btn-primary" type="submit">View History - OldFlow</button>
+            						<button class="btn btn-primary" type="submit">Topup History (OldFlow)</button>
             			</form>
         			@endif
         			@if (Route::has('ecmin.newrecharge.history'))
             			<form method="POST" action="{{ route('ecmin.newrecharge.history') }}">
             					{{ csrf_field() }}
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            						<button class="btn btn-primary" type="submit">View History - NewFlow</button>
+            						<button class="btn btn-primary" type="submit">Topup History (NewFlow)</button>
             			</form>
-        			@endif --}}
+        			@endif 
         			@if (Route::has('ecmin.webtopup.history'))
             			<form method="POST" action="{{ route('ecmin.webtopup.history') }}">
             					{{ csrf_field() }}
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            						<button class="btn btn-primary" type="submit">LS Nạp WebTopup</button>
+            						<button class="btn btn-primary" type="submit">WebTopup History (QuickFlow)</button>
             			</form>
         			@endif
         			@if (Route::has('ecmin.balance.history'))
             			<form method="POST" action="{{ route('ecmin.balance.history') }}">
             					{{ csrf_field() }}
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            						<button class="btn btn-primary" type="submit">LS Chuyển Xu</button>
+            						<button class="btn btn-primary" type="submit">Buy Item History</button>
             			</form>
         			@endif
 		            <form method="POST" action="{{ route('user-detail') }}">
 					{{ csrf_field() }}
 						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-						<button type="submit" class="btn btn-primary">Quay lại</button>
+						<button type="submit" class="btn btn-primary">Back</button>
 					</form>
           		</div>
           		

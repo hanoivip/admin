@@ -35,6 +35,8 @@ Route::middleware([
     //Route::post('/site/down', 'SiteController@down')->name('site-down');
     //Route::post('/site/up', 'SiteController@up')->name('site-up');
     Route::any('/back', 'AdminController@back')->name('back');
+    // Mod manager
+    Route::any('/mods', 'AdminController@mods')->name('ecmin.mods');
 });
 
 /*

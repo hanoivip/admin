@@ -180,6 +180,11 @@
           </a>
         </li>
         @endif
+        <li>
+          <a href="{{ route('ecmin.mods') }}">
+            <i class="fa fa-laptop"></i> <span>Manage Mods</span>
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

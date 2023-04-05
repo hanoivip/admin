@@ -11,6 +11,7 @@ use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\Payment\Facades\BalanceFacade;
+use Hanoivip\User\Facades\UserFacade;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
 use Hanoivip\Game\Facades\GameHelper;
@@ -287,5 +288,29 @@ class AdminController extends Controller
     public function back(Request $request)
     {
         return back();
+    }
+    
+    public function mods(Request $request)
+    {
+        $message = "";
+        $errorMessage = "";
+        if ($request->getMethod() == 'POST')
+        {
+            try
+            {
+                $username = $request->input('username');
+                $user = UserFacade::getUserCredentials($username);
+                $result = $this->admin->addRole($user->id, "Mod", "mod");
+                if ($result)
+                {
+                    $message = "Add mod success";
+                }
+            }
+            catch (Exception $ex)
+            {
+                $errorMessage = "Add mod exception";
+            }
+        }
+        return view('hanoivip::admin.mods', ['message' => $message, 'error_message' => $errorMessage]);
     }
 }

@@ -23,7 +23,7 @@
 					@endif
 					
 				</div>
-				
+				{{--
 	            <div class="box-header with-border">
 	              <h3 class="box-title">Add/remove Webcoins</h3>
 	            </div>
@@ -58,8 +58,15 @@
 	                <button type="submit" class="btn btn-primary">Remove coin</button>
 	              </div>
 	            </form>
-	            
+	            --}}
 	            <div class="box-footer">
+	            	@if (Route::has('ecmin.balance.request'))
+                        <form method="GET" action="{{ route('ecmin.balance.request') }}">
+            					{{ csrf_field() }}
+        						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+        						<button class="btn btn-primary" type="submit">Request Add/Remove</button>
+            			</form>
+        			@endif
     	            @if (Route::has('ecmin.topup.history'))
                         <form method="POST" action="{{ route('ecmin.topup.history') }}">
             					{{ csrf_field() }}

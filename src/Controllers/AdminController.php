@@ -11,6 +11,7 @@ use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
 use Hanoivip\Payment\Facades\BalanceFacade;
+use Hanoivip\Payment\Facades\BalanceRequest;
 use Hanoivip\User\Facades\UserFacade;
 use Hanoivip\Events\Game\UserRecharge;
 use Hanoivip\Events\Gate\UserTopup;
@@ -157,7 +158,7 @@ class AdminController extends Controller
         $userId = Auth::user()->getAuthIdentifier();
         $tid = $request->input('tid');
         $balance = $request->input('balance');
-        $reason = "Admin $userId add $tid";
+        $reason = $request->input('reason');
         $message = '';
         $error_message = '';
         try 
@@ -169,7 +170,7 @@ class AdminController extends Controller
                 Log::error("Admin $userId tried to add coin for non-supporter $tid");
                 $error_message = __('hanoivip.admin::admin.balance.add.denied');
             }
-            else if (BalanceFacade::add($tid, $balance, $reason))
+            else if (BalanceRequest::request($userId, $tid, $reason, $balance))
                 $message = __('hanoivip.admin::admin.balance.add.sucess');
             else
                 $error_message = __('hanoivip.admin::admin.balance.add.fail');
@@ -185,6 +186,7 @@ class AdminController extends Controller
     
     public function removeBalance(AddBalance $request)
     {
+        $userId = Auth::user()->getAuthIdentifier();
         $tid = $request->input('tid');
         $balance = $request->input('balance');
         $reason = $request->input('reason');
@@ -197,7 +199,7 @@ class AdminController extends Controller
             {
                 $error_message = __('hanoivip.admin::admin.balance.remove.denied');
             }
-            else if (BalanceFacade::remove($tid, $balance, $reason))
+            else if (BalanceRequest::request($userId, $tid, $reason, -1 * $balance))
                 $message = __('hanoivip.admin::admin.balance.remove.success');
             else
                 $error_message = __('hanoivip.admin::admin.balance.remove.fail');

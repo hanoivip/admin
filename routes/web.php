@@ -22,8 +22,8 @@ Route::middleware([
     Route::post('/user/activity/test/recharge', 'AdminController@fakeRecharge')->name('event.test.recharge');
     // Balance
     Route::get('/balance', 'AdminController@balanceInfo')->name('balance-info');
-    //Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
-    //Route::post('/balance/remove', 'AdminController@removeBalance')->name('balance-remove');
+    Route::post('/balance/add', 'AdminController@addBalance')->name('balance-add');
+    Route::post('/balance/remove', 'AdminController@removeBalance')->name('balance-remove');
     //Route::get('/recharge', 'AdminController@recharge')->name('admin-recharge');
     //Route::post('/recharge', 'AdminController@doRecharge')->name('admin-recharge-do');
     // Server

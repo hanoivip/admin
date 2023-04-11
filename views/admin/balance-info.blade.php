@@ -23,7 +23,6 @@
 					@endif
 					
 				</div>
-				{{--
 	            <div class="box-header with-border">
 	              <h3 class="box-title">Add/remove Webcoins</h3>
 	            </div>
@@ -35,7 +34,7 @@
 	                  <input id="balance" name="balance" type="text" class="form-control" placeholder="Amount to add">
 	                </div>
 	                <div class="form-group">
-	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Add Reason" value="admin panel">
+	                  <input id="reason" name="reason" type="text" class="form-control" placeholder="Add Reason" value="admin panel">
 	                </div>
 	              </div>
 	              <div class="box-footer">
@@ -51,22 +50,22 @@
 	                  <input id="balance" name="balance" type="text" class="form-control" placeholder="Amount to remove">
 	                </div>
 	                <div class="form-group">
-	                  <input id="reason" name="reason" type="hidden" class="form-control" placeholder="Remove Reason" value="admin panel">
+	                  <input id="reason" name="reason" type="text" class="form-control" placeholder="Remove Reason" value="admin panel">
 	                </div>
 	              </div>
 	              <div class="box-footer">
 	                <button type="submit" class="btn btn-primary">Remove coin</button>
 	              </div>
 	            </form>
-	            --}}
 	            <div class="box-footer">
+	            {{--
 	            	@if (Route::has('ecmin.balance.request'))
                         <form method="GET" action="{{ route('ecmin.balance.request') }}">
             					{{ csrf_field() }}
         						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
         						<button class="btn btn-primary" type="submit">Request Add/Remove</button>
             			</form>
-        			@endif
+        			@endif--}}
     	            @if (Route::has('ecmin.topup.history'))
                         <form method="POST" action="{{ route('ecmin.topup.history') }}">
             					{{ csrf_field() }}

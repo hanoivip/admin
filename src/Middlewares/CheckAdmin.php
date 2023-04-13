@@ -25,6 +25,6 @@ class CheckAdmin
             else
                 Log::error('CheckAdmin detect non-authorized access from user:' . $uid);
         }
-        return response('Unauthorized.', 401);
+        return redirect()->route('login');
     }
 }

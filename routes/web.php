@@ -11,7 +11,9 @@ Route::middleware([
     Route::get('/', 'AdminController@findUser')->name('admin');
     Route::get('/user/find', 'AdminController@findUser')->name('user-find');
     Route::any('/user/detail', 'AdminController@detailUser')->name('user-detail');
-    Route::get('/user/logas', 'AdminController@logasUser')->name('user-logas');
+    // User impersonate
+    Route::get('/user/logas', 'AdminController@logasUser')->name('ecmin.impersonate');
+    Route::any('/user/logas-exit', 'AdminController@exitLogasUser')->name('ecmin.impersonate.exit');
     Route::post('/user/reset-pass', 'AdminController@resetPass')->name('user-reset-pass');
     Route::post('/user/band', 'AdminController@bandUser')->name('user-band');
     Route::post('/user/unband', 'AdminController@unbandUser')->name('user-unband');

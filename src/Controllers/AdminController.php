@@ -4,8 +4,10 @@ namespace Hanoivip\Admin\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Carbon\Carbon;
 use Hanoivip\Admin\Requests\AddBalance;
 use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
@@ -68,20 +70,67 @@ class AdminController extends Controller
         try
         {
             if ($this->passport->resetPassword($tid))
-                $message = __('hanoivip.admin::admin.user.reset-pass.success');
+                $message = __('hanoivip.admin::admin.reset-pass.success');
             else 
-                $error_message = __('hanoivip.admin::admin.user.reset-pass.fail');
+                $error_message = __('hanoivip.admin::admin.reset-pass.fail');
         }
         catch (Exception $ex)
         {
             Log::error('Admin reset user password exception: ' . $ex->getMessage());
-            $error_message = __('hanoivip.admin::admin.user.reset-pass.exception');
+            $error_message = __('hanoivip.admin::admin.reset-pass.exception');
         }
         return view('hanoivip::admin.process-result', 
             ['tid' => $tid, 'message' => $message, 'error_message' => $error_message]);
     }
     
     public function logasUser(AdminRequest $request)
+    {
+        $tid = $request->input('tid');
+        $message = '';
+        $error_message = '';
+        try
+        {
+            $userId = Auth::user()->getAuthIdentifier();
+            $targetUser = UserFacade::getUserCredentials($tid);
+            if (empty($targetUser))
+            {
+                $error_message = __('hanoivip.admin::admin.logas.user-not-exists');
+                return view('hanoivip::admin.process-result', ['error_message' => $error_message, 'tid' => $tid]);
+            }
+            else
+            {
+                $role = $this->admin->getRole($tid);
+                if (!empty($role))
+                {
+                    return view('hanoivip::admin.process-result', ['error_message' => __('hanoivip.admin::admin.logas.user-is-mod'), 'tid' => $tid]);
+                }
+                $message = __('hanoivip.admin::admin.logas.success');
+                //session()->flush();
+                //Auth::logout();
+                //Auth::login($targetUser, true);
+                //$result = Auth::loginUsingId($tid);
+                //$result = Auth::login($targetUser);
+                //Log::debug(print_r($result, true));
+                //Auth::onceUsingId($tid);??
+                //session()->put('admin_user_id', $userId);
+                session()->put('impersonate', $tid);
+                //Cache::put('impersonate_' . $userId, $tid, Carbon::now()->addMinutes(10));
+                return response()->redirectToRoute('home')->with(['message' => $message]);
+            }
+        }
+        catch (Exception $ex)
+        {
+            Log::error('Admin logas user exception: ' . $ex->getMessage());
+            return view('hanoivip::admin.process-result', ['error_message' => __('hanoivip.admin::admin.user.logas.exception'), 'tid' => $tid]);
+        }
+    }
+    
+    public function exitLogasUser(AdminRequest $request)
+    {
+        
+    }
+    
+    public function logasUser1(AdminRequest $request)
     {
         $tid = $request->input('tid');
         $message = '';

@@ -16,6 +16,15 @@ return [
         ],
     ],
     'user' => [
-        
+        'not-found' => 'User not found!',
     ],
+    'logas' => [
+        'user-not-exists' =>'User not found',
+        'user-is-mod' => 'Can not log in another mod/smod/admin user'
+    ],
+    'reset-pass' => [
+        'success' => 'Reset pass success',
+        'fail' => 'Failure',
+        'exception' => 'Exception..'
+    ]
 ];

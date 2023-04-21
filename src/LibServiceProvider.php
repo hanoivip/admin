@@ -32,6 +32,8 @@ class LibServiceProvider extends ServiceProvider
             \Hanoivip\Admin\Commands\AdminSupporter::class,
         ]);
         $this->app->bind('admin', AdminService::class);
+        $this->app->bind(IUserOperator::class, ApiOperator::class);
+        /*
         $ops = config('admin.operator', 'api');
         if ($ops == 'database')
         {
@@ -40,6 +42,6 @@ class LibServiceProvider extends ServiceProvider
         else
         {
             $this->app->bind(IUserOperator::class, ApiOperator::class);
-        }
+        }*/
     }
 }

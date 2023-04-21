@@ -72,7 +72,7 @@
                 	</form>
             	</div>
             	<div class="action_form">
-            		<form method="GET" action="{{ route('user-logas') }}">
+            		<form method="GET" action="{{ route('ecmin.impersonate') }}">
             			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
             			<button type="submit" class="btn btn-primary">Logas User</button>
             		</form>

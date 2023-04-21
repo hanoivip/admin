@@ -20,11 +20,7 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE/css/_all-skins.min.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-@if (Auth::check())
-<script type="text/javascript">
-	var API_TOKEN = "{{ Request::user()->api_token }}";
-</script>
-@endif
+	<meta name="access-token" content="{{ current_user_device_token() }}">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

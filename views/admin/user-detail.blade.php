@@ -83,6 +83,12 @@
             			<button type="submit" class="btn btn-primary">Test Saleoff</button>
             		</form>
             	</div>
+            	<div class="action_form">
+            		<form method="GET" action="{{ route('ecmin.manual-payment') }}">
+            			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+            			<button type="submit" class="btn btn-primary">Manual Payment</button>
+            		</form>
+            	</div>
             </div>
 </div>
 </div>

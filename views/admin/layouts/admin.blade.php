@@ -181,6 +181,20 @@
             <i class="fa fa-laptop"></i> <span>Manage Mods</span>
           </a>
         </li>
+        @if (Route::has('ecmin.tsr'))
+    	<li>
+          <a href="{{ route('ecmin.tsr') }}">
+            <i class="fa fa-laptop"></i> <span>Thesieure.com</span>
+          </a>
+        </li>
+        @endif
+        @if (Route::has('ecmin.broadcast'))
+    	<li>
+          <a href="{{ route('ecmin.broadcast') }}">
+            <i class="fa fa-laptop"></i> <span>Broadcast System Message</span>
+          </a>
+        </li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->

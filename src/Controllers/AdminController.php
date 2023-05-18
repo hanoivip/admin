@@ -2,26 +2,24 @@
 
 namespace Hanoivip\Admin\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
-use Exception;
-use Carbon\Carbon;
+use Hanoivip\Admin\IUserOperator;
 use Hanoivip\Admin\Requests\AddBalance;
 use Hanoivip\Admin\Requests\AddServer;
 use Hanoivip\Admin\Requests\AdminRequest;
 use Hanoivip\Admin\Requests\RemoveServer;
+use Hanoivip\Admin\Services\AdminService;
+use Hanoivip\Events\Game\UserRecharge;
+use Hanoivip\Events\Gate\UserTopup;
+use Hanoivip\Events\Server\ServerCreated;
+use Hanoivip\Game\Facades\GameHelper;
+use Hanoivip\Game\Facades\ServerFacade;
 use Hanoivip\Payment\Facades\BalanceFacade;
 use Hanoivip\Payment\Facades\BalanceRequest;
 use Hanoivip\User\Facades\UserFacade;
-use Hanoivip\Events\Game\UserRecharge;
-use Hanoivip\Events\Gate\UserTopup;
-use Hanoivip\Game\Facades\GameHelper;
-use Hanoivip\Game\Facades\ServerFacade;
-use Hanoivip\Admin\IUserOperator;
-use Hanoivip\Events\Server\ServerCreated;
-use Hanoivip\Admin\Services\AdminService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class AdminController extends Controller
 {
@@ -41,19 +39,32 @@ class AdminController extends Controller
     {
         return view('hanoivip::admin.user-find');
     }
-    
+    // TODO: UserProvider?
     public function detailUser(AdminRequest $request)
     {
         $tid = $request->input('tid');
         try
         {
             $info = $this->passport->fetchAllInfo($tid);
-            //Log::debug('Passport fetch user info:' . print_r($info, true));
             if (empty($info))
+            {
+                if (!is_numeric($tid))
+                {
+                    // retry with hash username
+                    $hash = md5($tid);
+                    $info = $this->passport->fetchAllInfo($hash);
+                }
+                
+            }
+            if (empty($info))
+            {
                 return view('hanoivip::admin.user-find', ['error_message' => __('hanoivip.admin::admin.user.not-found')]);
+            }
             else
+            {
                 return view('hanoivip::admin.user-detail',
                     ['tid' => $info['id'], 'personal' => $info['personal'], 'secure' => $info['secure']]);
+            }
         }
         catch (Exception $ex)
         {
@@ -363,5 +374,53 @@ class AdminController extends Controller
             }
         }
         return view('hanoivip::admin.mods', ['message' => $message, 'error_message' => $errorMessage]);
+    }
+    const AGENT_BALANCE_TYPE = 2;
+    public function payment(Request $request)
+    {
+        $options = config('admin.manual_payment_options', []);
+        $message = "";
+        $errorMessage = "";
+        $tid = $request->input('tid');
+        if ($request->getMethod() == 'POST')
+        {
+            $amount = $request->input('amount');
+            if (!in_array($amount, $options))
+            {
+                $errorMessage = 'Invalid amount!';
+            }
+            else
+            {
+                $adminId = Auth::user()->getAuthIdentifier();
+                if (BalanceFacade::enough($adminId, $amount, self::AGENT_BALANCE_TYPE) !== true)
+                {
+                    $errorMessage = "Agent is out of money!";
+                }
+                else 
+                {
+                    if (BalanceFacade::remove($adminId, $amount, "ManualPayment:$tid", self::AGENT_BALANCE_TYPE) !== true)
+                    {
+                        $errorMessage = "Subtract admin agent balance fail! Retry!";
+                    }
+                    else
+                    {
+                        if (BalanceFacade::add($tid, $amount, "ManualPayment:$adminId") === true)
+                        {
+                            $message = "Success";
+                        }
+                        else
+                        {
+                            $errorMessage = "Fail to add coin for user $tid amount $amount";
+                        }
+                    }
+                }
+            }
+        }
+        
+        return view('hanoivip::admin.manual-payment', [
+            'options' => $options, 
+            'tid' => $tid,
+            'message' => $message, 
+            'error_message' => $errorMessage]);
     }
 }

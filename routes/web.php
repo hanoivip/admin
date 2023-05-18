@@ -28,14 +28,13 @@ Route::middleware([
     Route::post('/balance/remove', 'AdminController@removeBalance')->name('balance-remove');
     //Route::get('/recharge', 'AdminController@recharge')->name('admin-recharge');
     //Route::post('/recharge', 'AdminController@doRecharge')->name('admin-recharge-do');
+    // Agent payment
+    Route::any('/payment', 'AdminController@payment')->name('ecmin.manual-payment');
     // Server
     Route::get('/server', 'AdminController@serverInfo')->name('server-info');
     Route::post('/server/remove', 'AdminController@removeServer')->name('server-remove');
     Route::post('/server/add', 'AdminController@addServer')->name('server-add');
     // Website
-    //Route::get('/site', 'SiteController@status')->name('site-status');
-    //Route::post('/site/down', 'SiteController@down')->name('site-down');
-    //Route::post('/site/up', 'SiteController@up')->name('site-up');
     Route::any('/back', 'AdminController@back')->name('back');
     // Mod manager
     Route::any('/mods', 'AdminController@mods')->name('ecmin.mods');

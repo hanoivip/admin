@@ -362,10 +362,26 @@ class AdminController extends Controller
             {
                 $username = $request->input('username');
                 $user = UserFacade::getUserCredentials($username);
-                $result = $this->admin->addRole($user->id, "Mod", "mod");
-                if ($result)
+                if (empty($user))
                 {
-                    $message = "Add mod success";
+                    // try with hashed username
+                    $user = UserFacade::getUserCredentials(md5($username));
+                }
+                if (empty($user))
+                {
+                    $errorMessage = "User not found";
+                }
+                else
+                {
+                    $result = $this->admin->addRole($user->id, "Mod", "mod");
+                    if ($result)
+                    {
+                        $message = "Add mod success";
+                    }
+                    else
+                    {
+                        $errorMessage = "Fail. Retry.";
+                    }
                 }
             }
             catch (Exception $ex)

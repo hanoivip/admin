@@ -89,6 +89,14 @@
             			<button type="submit" class="btn btn-primary">Manual Payment</button>
             		</form>
             	</div>
+            	@if (Route::has('ecmin.shopv2.order'))
+            		<div class="action_form">
+                		<form method="GET" action="{{ route('ecmin.shopv2.order') }}">
+                			<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+                			<button type="submit" class="btn btn-primary">List Orders</button>
+                		</form>
+                	</div>
+            	@endif
             </div>
 </div>
 </div>

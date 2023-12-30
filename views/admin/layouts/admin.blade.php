@@ -168,7 +168,6 @@
           </a>
         </li>
         @endif
-        -->
         @if (Route::has('ecmin.webtopup'))
     	<li>
           <a href="{{ route('ecmin.webtopup') }}">
@@ -176,6 +175,7 @@
           </a>
         </li>
         @endif
+        -->
         <li>
           <a href="{{ route('ecmin.mods') }}">
             <i class="fa fa-laptop"></i> <span>Manage Mods</span>

@@ -65,7 +65,7 @@
         						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
         						<button class="btn btn-primary" type="submit">Request Add/Remove</button>
             			</form>
-        			@endif--}}
+        			@endif
     	            @if (Route::has('ecmin.topup.history'))
                         <form method="POST" action="{{ route('ecmin.topup.history') }}">
             					{{ csrf_field() }}
@@ -86,18 +86,25 @@
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
             						<button class="btn btn-primary" type="submit">WebTopup History (QuickFlow)</button>
             			</form>
+        			@endif --}}
+        			@if (Route::has('ecmin.vpcard.history'))
+            			<form method="POST" action="{{ route('ecmin.vpcard.history') }}">
+            					{{ csrf_field() }}
+            						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
+            						<button class="btn btn-primary" type="submit">Vietnam Prepaid Card History</button>
+            			</form>
         			@endif
         			@if (Route::has('ecmin.balance.history'))
             			<form method="POST" action="{{ route('ecmin.balance.history') }}">
             					{{ csrf_field() }}
             						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-            						<button class="btn btn-primary" type="submit">Buy Item History</button>
+            						<button class="btn btn-primary" type="submit">Balance Changes History</button>
             			</form>
         			@endif
 		            <form method="POST" action="{{ route('user-detail') }}">
 					{{ csrf_field() }}
 						<input id="tid" name="tid" type="hidden" value="{{$tid}}">
-						<button type="submit" class="btn btn-primary">Back</button>
+						<button type="submit" class="btn btn-secondary">Back</button>
 					</form>
           		</div>
           		

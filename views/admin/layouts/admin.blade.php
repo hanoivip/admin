@@ -20,7 +20,12 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE/css/_all-skins.min.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="access-token" content="{{ current_user_device_token() }}">
+  <meta name="access-token" content="{{ current_user_device_token() }}">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -55,6 +60,11 @@
                   <!-- User image -->
                   <li class="user-header">
                     <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+
+                    <p>
+                      Alexander Pierce - Web Developer
+                      <small>Member since Nov. 2012</small>
+                    </p>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
@@ -110,39 +120,32 @@
         
         <li class="active">
           <a href="{{ route('user-find') }}">
-            <i class="fa fa-table"></i> <span>Manage Users</span>
+            <i class="fa fa-table"></i> <span>Users</span>
           </a>
         </li>
         <li>
           <a href="{{ route('server-info') }}">
-            <i class="fa fa-laptop"></i> <span>Manage Servers</span>
+            <i class="fa fa-laptop"></i> <span>Servers</span>
           </a>
         </li>
         @if (Route::has('ecmin.policy'))
     	<li>
           <a href="{{ route('ecmin.policy') }}">
-            <i class="fa fa-laptop"></i> <span>Manage Saleoff</span>
-          </a>
-        </li>
-        @endif
-        @if (Route::has('ecmin.income'))
-    	<li>
-          <a href="{{ route('ecmin.income') }}">
-            <i class="fa fa-laptop"></i> <span>Revenue</span>
+            <i class="fa fa-laptop"></i> <span>Khuyến Mãi</span>
           </a>
         </li>
         @endif
         @if (Route::has('ecmin.stats'))
     	<li>
           <a href="{{ route('ecmin.stats') }}">
-            <i class="fa fa-laptop"></i> <span>Statistics</span>
+            <i class="fa fa-laptop"></i> <span>Thống kê</span>
           </a>
         </li>
         @endif
         @if (Route::has('gift.package.list'))
         <li class=" treeview menu-open">
           <a href="javascript:void(0);">
-            <i class="fa fa-dashboard"></i> <span>Manage Giftcodes</span>
+            <i class="fa fa-dashboard"></i> <span>Gift</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -156,35 +159,35 @@
         @if (Route::has('ecmin.messages'))
     	<li>
           <a href="{{ route('ecmin.messages') }}">
-            <i class="fa fa-laptop"></i> <span>User Messages</span>
+            <i class="fa fa-laptop"></i> <span>Messages</span>
           </a>
         </li>
         @endif
-        <!-- 
-        @if (Route::has('ecmin.newrecharge'))
+        @if (Route::has('ecmin.shopv2'))
     	<li>
-          <a href="{{ route('ecmin.newrecharge') }}">
-            <i class="fa fa-laptop"></i> <span>Quản lý nạp - newrecharge</span>
+          <a href="{{ route('ecmin.shopv2') }}">
+            <i class="fa fa-laptop"></i> <span>Manage Shop</span>
           </a>
         </li>
         @endif
-        @if (Route::has('ecmin.webtopup'))
+        @if (Route::has('ecmin.ios'))
     	<li>
-          <a href="{{ route('ecmin.webtopup') }}">
-            <i class="fa fa-laptop"></i> <span>Quản lý nạp - webtopup</span>
+          <a href="{{ route('ecmin.ios') }}">
+            <i class="fa fa-laptop"></i> <span>Quản lý iOS</span>
           </a>
         </li>
         @endif
-        -->
-        <li>
-          <a href="{{ route('ecmin.mods') }}">
-            <i class="fa fa-laptop"></i> <span>Manage Mods</span>
-          </a>
-        </li>
         @if (Route::has('ecmin.tsr'))
     	<li>
           <a href="{{ route('ecmin.tsr') }}">
             <i class="fa fa-laptop"></i> <span>Thesieure.com</span>
+          </a>
+        </li>
+        @endif
+        @if (Route::has('ecmin.vpcard.finduser'))
+    	<li>
+          <a href="{{ route('ecmin.vpcard.finduser') }}">
+            <i class="fa fa-laptop"></i> <span>Vietnam Card - Find User By Order</span>
           </a>
         </li>
         @endif
@@ -207,7 +210,6 @@
         {{ $message }}
         </div>
     @endif
-    
     @if(!empty($error_message))
         <div class="alert alert-danger alert-dismissible">
         {{ $error_message }}
@@ -218,7 +220,11 @@
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io"></a>.</strong> All rights
+    reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -237,15 +243,22 @@
           <li>
             <a href="javascript:void(0)">
               <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
               <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
               </div>
             </a>
           </li>
           <li>
             <a href="javascript:void(0)">
               <i class="menu-icon fa fa-user bg-yellow"></i>
-              <div class="menu-info">
 
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                <p>New phone +1(800)555-1234</p>
               </div>
             </a>
           </li>
@@ -419,8 +432,6 @@
 <script src="{{ asset('AdminLTE/js/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
-
-<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 @stack('scripts')
 	
 </body>

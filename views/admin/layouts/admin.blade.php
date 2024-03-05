@@ -191,6 +191,13 @@
           </a>
         </li>
         @endif
+        @if (Route::has('ecmin.paytr'))
+    	<li>
+          <a href="{{ route('ecmin.paytr') }}">
+            <i class="fa fa-laptop"></i> <span>Turkey Paytr Management</span>
+          </a>
+        </li>
+        @endif
         @if (Route::has('ecmin.broadcast'))
     	<li>
           <a href="{{ route('ecmin.broadcast') }}">

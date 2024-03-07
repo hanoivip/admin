@@ -3,7 +3,7 @@
 namespace Hanoivip\Admin\Services;
 
 use Illuminate\Support\Facades\Log;
-use Mervick\CurlHelper;
+use Hanoivip\CurlHelper;
 use Exception;
 use Hanoivip\Admin\IUserOperator;
 

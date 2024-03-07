@@ -123,11 +123,20 @@
             <i class="fa fa-table"></i> <span>Users</span>
           </a>
         </li>
+        @if (Route::has('ecmin.recharge'))
         <li>
-          <a href="{{ route('server-info') }}">
-            <i class="fa fa-laptop"></i> <span>Servers</span>
+          <a href="{{ route('ecmin.recharge') }}">
+            <i class="fa fa-laptop"></i> <span>Recharge Flow 1</span>
           </a>
         </li>
+        @endif
+        @if (Route::has('ecmin.server'))
+        <li>
+          <a href="{{ route('ecmin.server') }}">
+            <i class="fa fa-laptop"></i> <span>Server Manager</span>
+          </a>
+        </li>
+        @endif
         @if (Route::has('ecmin.policy'))
     	<li>
           <a href="{{ route('ecmin.policy') }}">
@@ -212,12 +221,12 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  	@if(!empty($message))
+  	@if(isset($message))
         <div class="alert alert-success alert-dismissible">
         {{ $message }}
         </div>
     @endif
-    @if(!empty($error_message))
+    @if(isset($error_message))
         <div class="alert alert-danger alert-dismissible">
         {{ $error_message }}
         </div>

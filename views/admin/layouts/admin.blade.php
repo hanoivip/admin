@@ -226,6 +226,11 @@
         {{ $message }}
         </div>
     @endif
+    @if(isset($notice_message))
+        <div class="alert alert-warning alert-dismissible">
+        {{ $notice_message }}
+        </div>
+    @endif
     @if(isset($error_message))
         <div class="alert alert-danger alert-dismissible">
         {{ $error_message }}

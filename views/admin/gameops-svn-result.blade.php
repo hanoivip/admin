@@ -5,9 +5,9 @@
 @section('content')
 
 @if (!empty($files))
-@foreach($files as $f)
-<br/><p>{{$f}}</p>
-@endforeach
+    @foreach($files as $f)
+    <p>{{$f}}</p>
+    @endforeach
 @endif
 
 @endsection

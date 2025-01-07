@@ -25,6 +25,35 @@
 	              </div>
 	            </form>
 	            
+	            <form role="form" method="POST" action="{{ route('ecmin.gameops.init') }}">
+	            	{{ csrf_field() }}
+	              <div class="box-body">
+	                <div class="form-group">
+	                  <select id="svname" name="svname" style="width: 100%;">
+                		{{ show_user_servers() }}
+            		</select>
+            		<button type="submit" class="btn btn-primary">Init Server</button>
+	                </div>
+	              </div>
+	              <div class="box-footer">
+	                
+	              </div>
+	            </form>
+	            
+	            <form role="form" method="POST" action="{{ route('ecmin.gameops.apply') }}">
+	            	{{ csrf_field() }}
+	              <div class="box-body">
+	                <div class="form-group">
+	                  <select id="svname" name="svname" style="width: 100%;">
+                		{{ show_user_servers() }}
+            		</select>
+            		<button type="submit" class="btn btn-primary">Apply Server</button>
+	                </div>
+	              </div>
+	              <div class="box-footer">
+	                
+	              </div>
+	            </form>
 	            
 	            <div class="box-footer">
 	            

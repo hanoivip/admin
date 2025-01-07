@@ -3,9 +3,9 @@
 namespace Hanoivip\Admin\Services;
 
 interface IGameAdmin {
-    public function initServer($serverId, $files = []);
+    public function initServer($svname, $files = []);
     
-    public function applyServer($serverId, $files = []);
+    public function applyServer($svname, $files = []);
     
-    public function reloadServer($serverId);
+    public function reloadServer($svname);
 }

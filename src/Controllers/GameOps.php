@@ -4,8 +4,8 @@ namespace Hanoivip\Admin\Controllers;
 
 use Hanoivip\Admin\Services\IGameAdmin;
 use Hanoivip\Admin\Services\ISvn;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Request;
 
 class GameOps extends Controller
 {   
@@ -60,7 +60,7 @@ class GameOps extends Controller
     }
     
     public function initGame(Request $request) {
-        $serverId = $request->input('serverId');
+        $serverId = $request->input('svname');
         $files = $this->svn->list($this->dir, $this->username, $this->password);
         if (!empty($files)) {
             $ret = $this->gameAdmin->initServer($serverId, $files);
@@ -74,7 +74,7 @@ class GameOps extends Controller
     }
     
     public function applyGame(Request $request) {
-        $serverId = $request->input('serverId');
+        $serverId = $request->input('svname');
         $files = $this->svn->list($this->dir, $this->username, $this->password);
         if (!empty($files)) {
             $ret = $this->gameAdmin->applyServer($serverId, $files);

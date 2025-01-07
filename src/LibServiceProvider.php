@@ -4,6 +4,8 @@ namespace Hanoivip\Admin;
 
 use Hanoivip\Admin\Services\AdminService;
 use Hanoivip\Admin\Services\ApiOperator;
+use Hanoivip\Admin\Services\ISvn;
+use Hanoivip\Admin\Services\SvnCommandliner;
 use Illuminate\Support\ServiceProvider;
 use Hanoivip\Admin\Services\DatabaseOperator;
 
@@ -14,6 +16,7 @@ class LibServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../views' => resource_path('views/vendor/hanoivip'),
             __DIR__ . '/../config/admin.php' => config_path('admin.php'),
+            __DIR__ . '/../config/gameops.php' => config_path('gameops.php'),
             __DIR__.'/../lang' => resource_path('lang/vendor/hanoivip'),
             __DIR__.'/../resources' =>public_path(),
         ]);
@@ -27,6 +30,7 @@ class LibServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/admin.php', 'admin');
+        $this->mergeConfigFrom(__DIR__.'/../config/gameops.php', 'gameops');
         $this->commands([
             \Hanoivip\Admin\Commands\AdminAdd::class,
             \Hanoivip\Admin\Commands\AdminSupporter::class,
@@ -43,5 +47,6 @@ class LibServiceProvider extends ServiceProvider
         {
             $this->app->bind(IUserOperator::class, ApiOperator::class);
         }*/
+        $this->app->bind(ISvn::class, SvnCommandliner::class);
     }
 }

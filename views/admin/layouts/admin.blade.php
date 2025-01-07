@@ -214,6 +214,13 @@
           </a>
         </li>
         @endif
+        @if (Route::has('ecmin.gameops'))
+    	<li>
+          <a href="{{ route('ecmin.gameops') }}">
+            <i class="fa fa-laptop"></i> <span>Game Operation</span>
+          </a>
+        </li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->

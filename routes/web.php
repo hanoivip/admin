@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+// TODO: permission
 Route::middleware([
     'web',
     'admin'
@@ -32,6 +33,11 @@ Route::middleware([
     Route::any('/back', 'AdminController@back')->name('back');
     // Mod manager
     Route::any('/mods', 'AdminController@mods')->name('ecmin.mods');
+    // Game Ops
+    Route::get('/ops', 'GameOps@index')->name('ecmin.gameops');
+    Route::any('/ops/update', 'GameOps@updateSvn')->name('ecmin.gameops.update');
+    Route::any('/ops/init', 'GameOps@initGame')->name('ecmin.gameops.init');
+    Route::any('/ops/apply', 'GameOps@applyGame')->name('ecmin.gameops.apply');
 });
 
 /*

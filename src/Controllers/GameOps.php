@@ -69,7 +69,7 @@ class GameOps extends Controller
             return view('hanoivip::admin.gameops-svn-result', ['message' => 'ok']);
         }
         else {
-            return view('hanoivip::admin.gameops-svn-result', ['error' => $ret]);
+            return view('hanoivip::admin.gameops-svn-result', ['error_message' => $ret]);
         }
     }
     
@@ -83,7 +83,7 @@ class GameOps extends Controller
             return view('hanoivip::admin.gameops-svn-result', ['message' => 'ok']);
         }
         else {
-            return view('hanoivip::admin.gameops-svn-result', ['error' => $ret]);
+            return view('hanoivip::admin.gameops-svn-result', ['error_message' => $ret]);
         }
     }
 }

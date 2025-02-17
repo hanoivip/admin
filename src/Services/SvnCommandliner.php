@@ -15,6 +15,8 @@ class SvnCommandliner implements ISvn
         $out = [];
         $ret = 0;
         exec($cmd, $out, $ret);
+        //if fail, print instruction message to allow nginx to run svn with root permission without password
+        //nginx ALL=(ALL) NOPASSWD:/usr/bin/svn
         //Log::error("Test svn command: " . print_r($out, true));
         //Log::error("Test svn command: " . $ret);
         return empty($ret) && !empty($out);
